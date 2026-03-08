@@ -1,0 +1,59 @@
+<!-- ============================================================
+     hero.html — Hero Section
+     FireChars.in
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-bg">
+    <canvas id="fireCanvas"></canvas>
+    <div class="hero-grid"></div>
+    <div class="hero-glow-center"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">firechars.in &nbsp;·&nbsp; Est. 2024</div>
+
+    <svg class="hero-logo-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="heroOuter" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#6A6A6A"/>
+          <stop offset="30%"  stop-color="#C8860A"/>
+          <stop offset="70%"  stop-color="#E8621A"/>
+          <stop offset="100%" stop-color="#8B4513"/>
+        </linearGradient>
+        <linearGradient id="heroInner" x1="100" y1="40" x2="100" y2="180" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#F0C060"/>
+          <stop offset="100%" stop-color="#E8621A"/>
+        </linearGradient>
+        <linearGradient id="heroMetal" x1="60" y1="0" x2="140" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#999"/>
+          <stop offset="40%"  stop-color="#C8860A"/>
+          <stop offset="100%" stop-color="#B87333"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M100 10 C85 35 72 55 70 80 C68 105 76 125 88 140 C75 125 65 100 68 75 C70 50 82 30 95 15 Z" fill="url(#heroMetal)" opacity="0.9" filter="url(#glow)"/>
+      <path d="M100 5 C115 30 128 55 128 82 C128 115 113 145 100 160 C87 145 72 115 72 82 C72 55 85 30 100 5 Z" fill="url(#heroOuter)" filter="url(#glow)"/>
+      <path d="M100 40 C110 58 116 76 116 95 C116 118 108 136 100 148 C92 136 84 118 84 95 C84 76 90 58 100 40 Z" fill="url(#heroInner)" opacity="0.85"/>
+      <path d="M128 82 C135 100 132 125 120 140 C130 130 140 112 138 90 C136 68 126 48 115 32 Z" fill="url(#heroMetal)" opacity="0.85" filter="url(#glow)"/>
+      <path d="M118 145 C112 158 100 168 88 168 C76 168 65 160 60 148 C70 158 85 163 100 160 C112 157 122 152 128 142 Z" fill="url(#heroOuter)" opacity="0.9"/>
+      <path d="M92 30 C90 50 86 70 84 90 C82 70 85 48 92 30 Z" fill="rgba(255,200,100,0.3)"/>
+      <text x="66" y="218" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" fill="url(#heroOuter)" letter-spacing="6" opacity="0.95">FC</text>
+    </svg>
+
+    <h1 class="hero-title"><span class="fire">FIRE</span><span class="chars">CHARS</span></h1>
+    <p class="hero-tagline">Characters that power innovation</p>
+
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact"  class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>

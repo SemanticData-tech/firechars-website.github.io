@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products — FireChars.in</title>
+  <meta name="description" content="Explore FireChars ready-to-deploy products — AttendEase, Billing Manager, Report Card Generator, Student Attendance. Built for real businesses.">
+  <meta name="keywords" content="AttendEase, Billing Manager, Report Card, Student Attendance, FireChars products, mobile apps, web apps">
+  <meta name="author" content="FireChars.in">
+  <link rel="canonical" href="https://firechars.in/products.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://firechars.in/products.html">
+  <meta property="og:title"       content="Our Products — FireChars.in">
+  <meta property="og:description" content="Ready-to-deploy products built by FireChars. Attendance apps, billing managers, report card generators and more.">
+  <meta property="og:locale"      content="en_IN">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <svg class="nav-logo-icon" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 8 C50 8 78 30 78 58 C78 78 66 95 50 100 C34 95 22 78 22 58 C22 30 50 8 50 8Z" fill="url(#nFO)" opacity="0.9"/>
+        <path d="M50 28 C50 28 68 45 68 62 C68 76 60 88 50 92 C40 88 32 76 32 62 C32 45 50 28 50 28Z" fill="url(#nFI)" opacity="0.7"/>
+        <text x="32" y="74" font-family="Arial Black" font-size="28" font-weight="900" fill="white" opacity="0.95">FC</text>
+        <defs>
+          <linearGradient id="nFO" x1="50" y1="8" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#C8860A"/>
+            <stop offset="50%"  stop-color="#E8621A"/>
+            <stop offset="100%" stop-color="#8B4513"/>
+          </linearGradient>
+          <linearGradient id="nFI" x1="50" y1="28" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F0A040"/>
+            <stop offset="100%" stop-color="#E8621A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-text"><span>FIRE</span>CHARS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="products.html" style="color:var(--fire-orange);">Products</a></li>
+      <li><a href="clients.html">Our Work</a></li>
+      <li><a href="index.html#viset">VISET</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <div class="products-hero">
+    <div class="products-hero-grid"></div>
+    <div class="products-hero-glow"></div>
+    <div class="products-hero-content">
+      <div class="products-hero-eyebrow">firechars.in &nbsp;·&nbsp; Ready to Deploy</div>
+      <h1>Our <span>Products</span></h1>
+      <p>Battle-tested, production-ready apps built for real businesses. Each product is available for immediate deployment — customisable to your brand and requirements.</p>
+
+      <div class="products-filter">
+        <button class="filter-tag active" onclick="filterProducts('all', this)">All Products</button>
+        <button class="filter-tag" onclick="filterProducts('mobile', this)">Mobile Apps</button>
+        <button class="filter-tag" onclick="filterProducts('web', this)">Web Apps</button>
+        <button class="filter-tag" onclick="filterProducts('attendance', this)">Attendance</button>
+        <button class="filter-tag" onclick="filterProducts('billing', this)">Billing</button>
+        <button class="filter-tag" onclick="filterProducts('education', this)">Education</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PRODUCTS SECTION
+       ═══════════════════════════════════════ -->
+  <section class="products-section">
+
+    <div class="products-count-bar reveal">
+      <div class="products-count">Showing <span id="visibleCount">4</span> of <span>4</span> products</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(136,136,136,0.5);">
+        All Products · Ready to Deploy
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ── PRODUCT 1: AttendEase ─────────────────────── -->
+      <div class="product-card reveal" data-tags="mobile attendance">
+        <div class="product-badge">Mobile App</div>
+
+        <div class="product-screenshot">
+          <img src="assets/images/product-attendease.png" alt="AttendEase — Rotary Club Attendance App">
+        </div>
+
+        <div class="product-info">
+          <div class="product-platform">Mobile · Android</div>
+          <div class="product-name">AttendEase</div>
+          <div class="product-tagline">Smart Attendance, Apply Punctuality</div>
+          <p class="product-desc">
+            A complete attendance management system built for clubs, societies, and organisations. Designed for Rotary Club of Khopoli, AttendEase lets administrators mark attendance by members or projects, pick dates, generate formatted PDF reports, and share instantly — all from a mobile app.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Login &amp; Register</span>
+            <span class="product-feature">Member Management</span>
+            <span class="product-feature">Project-wise Attendance</span>
+            <span class="product-feature">Date Picker</span>
+            <span class="product-feature">PDF Report</span>
+            <span class="product-feature">Share via WhatsApp</span>
+            <span class="product-feature">Branded for your Club</span>
+          </div>
+          <div class="product-actions">
+            <a href="index.html#contact" class="btn-demo">Request Demo</a>
+            <a href="index.html#contact" class="btn-enquire">Get This Product</a>
+          </div>
+        </div>
+        <div class="product-num">01</div>
+      </div>
+
+      <!-- ── PRODUCT 2: Billing Manager ────────────────── -->
+      <div class="product-card reveal reveal-delay-1" data-tags="mobile billing">
+        <div class="product-badge new">Mobile App</div>
+
+        <div class="product-screenshot">
+          <img src="assets/images/product-billing.png" alt="Kasturveda Billing Manager">
+        </div>
+
+        <div class="product-info">
+          <div class="product-platform">Mobile · Android</div>
+          <div class="product-name">Billing Manager</div>
+          <div class="product-tagline">GST Invoicing, Simplified</div>
+          <p class="product-desc">
+            A full-featured billing and invoice management app built for small businesses and traders. Create user accounts with GST, add invoices with material details, track paid/pending/advance amounts, generate professional PDF invoices with QR codes, and export or share with a single tap.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">GST Billing</span>
+            <span class="product-feature">User Accounts</span>
+            <span class="product-feature">Invoice Create / Edit / Delete</span>
+            <span class="product-feature">Paid &amp; Pending Tracker</span>
+            <span class="product-feature">Advance Payments</span>
+            <span class="product-feature">PDF with QR Code</span>
+            <span class="product-feature">Export &amp; Share</span>
+            <span class="product-feature">Branded Invoice</span>
+          </div>
+          <div class="product-actions">
+            <a href="index.html#contact" class="btn-demo">Request Demo</a>
+            <a href="index.html#contact" class="btn-enquire">Get This Product</a>
+          </div>
+        </div>
+        <div class="product-num">02</div>
+      </div>
+
+      <!-- ── PRODUCT 3: Report Card Generator ──────────── -->
+      <div class="product-card reveal reveal-delay-2" data-tags="web education">
+        <div class="product-badge web">Web App</div>
+
+        <div class="product-screenshot">
+          <img src="assets/images/product-reportcard.png" alt="School Report Card Generator">
+        </div>
+
+        <div class="product-info">
+          <div class="product-platform">Web Application</div>
+          <div class="product-name">Report Card Generator</div>
+          <div class="product-tagline">CBSE/ICSE/State Board Report Cards, Instantly</div>
+          <p class="product-desc">
+            A web-based school report card generator designed for CBSE, ICSE, and State Board schools. Fill in student personal info, enter scholastic area marks, co-curricular and extra-curricular activities with grades, attendance, teacher remarks — and generate a print-ready branded PDF instantly.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Student Personal Info</span>
+            <span class="product-feature">Scholastic Marks Entry</span>
+            <span class="product-feature">Auto Grade Calculation</span>
+            <span class="product-feature">Co-curricular Activities</span>
+            <span class="product-feature">Extra-curricular Activities</span>
+            <span class="product-feature">Attendance Summary</span>
+            <span class="product-feature">Teacher Remarks</span>
+            <span class="product-feature">Branded PDF Download</span>
+            <span class="product-feature">CBSE / State Board Format</span>
+          </div>
+          <div class="product-actions">
+            <a href="index.html#contact" class="btn-demo">Request Demo</a>
+            <a href="index.html#contact" class="btn-enquire">Get This Product</a>
+          </div>
+        </div>
+        <div class="product-num">03</div>
+      </div>
+
+      <!-- ── PRODUCT 4: Student Attendance ─────────────── -->
+      <div class="product-card reveal reveal-delay-3" data-tags="mobile attendance education">
+        <div class="product-badge new">Mobile App</div>
+
+        <div class="product-screenshot">
+          <img src="assets/images/product-student-attendance.png" alt="Student Attendance App for Coaching Classes">
+        </div>
+
+        <div class="product-info">
+          <div class="product-platform">Mobile · Android</div>
+          <div class="product-name">Student Attendance</div>
+          <div class="product-tagline">Class-wise &amp; Subject-wise Attendance Tracking</div>
+          <p class="product-desc">
+            A smart attendance app purpose-built for coaching classes and tuition institutes. Mark attendance class-wise and subject-wise, view attendance history with details (present/absent), generate branded PDF attendance sheets per class and subject, and share directly via WhatsApp, Email, or Telegram.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Login &amp; Register</span>
+            <span class="product-feature">Class &amp; Subject Selection</span>
+            <span class="product-feature">Student List Management</span>
+            <span class="product-feature">Present / Absent Marking</span>
+            <span class="product-feature">Attendance History</span>
+            <span class="product-feature">Present &amp; Absent Count</span>
+            <span class="product-feature">Branded PDF Report</span>
+            <span class="product-feature">Share via WhatsApp</span>
+            <span class="product-feature">Powered by Raghav Group</span>
+          </div>
+          <div class="product-actions">
+            <a href="index.html#contact" class="btn-demo">Request Demo</a>
+            <a href="index.html#contact" class="btn-enquire">Get This Product</a>
+          </div>
+        </div>
+        <div class="product-num">04</div>
+      </div>
+
+    </div><!-- /products-grid -->
+
+    <!-- No results message -->
+    <div id="noResults" style="display:none;text-align:center;padding:5rem;font-family:'Rajdhani',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--ash);">
+      No products found in this category.<br>
+      <a href="index.html#contact" style="color:var(--fire-orange);text-decoration:none;margin-top:1rem;display:inline-block;">Request a Custom Product →</a>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CTA STRIP
+       ═══════════════════════════════════════ -->
+  <div class="products-cta-strip">
+    <h2 class="reveal">Need a <span>Custom</span> Product?</h2>
+    <p class="reveal reveal-delay-1">Don't see exactly what you need? We build bespoke mobile apps and web applications tailored to your business. Talk to us — we'll scope it, price it, and build it.</p>
+    <div class="cta-btns reveal reveal-delay-2">
+      <a href="index.html#contact" class="btn-primary">Start a Custom Project</a>
+      <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20am%20interested%20in%20one%20of%20your%20products." target="_blank" class="btn-secondary">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand"><span>FIRE</span>CHARS</div>
+    <div class="footer-copy">
+      &copy; <span id="yr"></span> FireChars.in &nbsp;·&nbsp; Rebranded from
+      <a href="https://semanticdata.online" target="_blank">SemanticData.Online</a>
+    </div>
+    <div class="footer-tagline">CHARACTERS THAT POWER INNOVATION</div>
+  </footer>
+
+  <!-- footer style needed here -->
+  <style>
+    footer {
+      background: var(--deep-black);
+      border-top: 1px solid rgba(232, 98, 26, 0.12);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 3px; color: var(--white); }
+    .footer-brand span { color: var(--fire-orange); }
+    .footer-copy { font-size: 0.78rem; color: rgba(136,136,136,0.6); font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; }
+    .footer-copy a { color: var(--fire-orange); text-decoration: none; }
+    .footer-tagline { font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; letter-spacing: 3px; color: rgba(136,136,136,0.5); }
+    @media (max-width: 900px) { footer { flex-direction: column; text-align: center; } }
+  </style>
+
+  <!-- WHATSAPP FAB -->
+  <div class="whatsapp-fab">
+    <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20am%20interested%20in%20one%20of%20your%20products."
+       target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════ -->
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // ── Product Filter ──────────────────────────────────────
+    function filterProducts(tag, btn) {
+      // Update active button
+      document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags') || '';
+        const show = tag === 'all' || tags.includes(tag);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      document.getElementById('visibleCount').textContent = visible;
+      document.getElementById('noResults').style.display  = visible === 0 ? 'block' : 'none';
+
+      // Fix grid gap when items are hidden
+      const grid = document.getElementById('productsGrid');
+      grid.style.background = visible === 0 ? 'transparent' : 'rgba(232,98,26,0.08)';
+    }
+  </script>
+
+</body>
+</html>

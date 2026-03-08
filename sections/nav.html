@@ -1,0 +1,36 @@
+<!-- ============================================================
+     nav.html — Navigation Bar
+     FireChars.in
+     ============================================================ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-icon" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 8 C50 8 78 30 78 58 C78 78 66 95 50 100 C34 95 22 78 22 58 C22 30 50 8 50 8Z" fill="url(#navFlameOuter)" opacity="0.9"/>
+      <path d="M50 28 C50 28 68 45 68 62 C68 76 60 88 50 92 C40 88 32 76 32 62 C32 45 50 28 50 28Z" fill="url(#navFlameInner)" opacity="0.7"/>
+      <text x="32" y="74" font-family="Arial Black" font-size="28" font-weight="900" fill="white" opacity="0.95">FC</text>
+      <defs>
+        <linearGradient id="navFlameOuter" x1="50" y1="8" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#C8860A"/>
+          <stop offset="50%"  stop-color="#E8621A"/>
+          <stop offset="100%" stop-color="#8B4513"/>
+        </linearGradient>
+        <linearGradient id="navFlameInner" x1="50" y1="28" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#F0A040"/>
+          <stop offset="100%" stop-color="#E8621A"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span class="nav-logo-text"><span>FIRE</span>CHARS</span>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#viset">VISET</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>

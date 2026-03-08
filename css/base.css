@@ -1,0 +1,144 @@
+/* =============================================================
+   base.css — Variables, Reset, Typography, Global Buttons
+   FireChars.in
+   ============================================================= */
+
+:root {
+  --fire-orange: #E8621A;
+  --fire-amber:  #C8860A;
+  --fire-copper: #B87333;
+  --fire-gold:   #D4A853;
+  --deep-black:  #080808;
+  --dark-charcoal: #111111;
+  --mid-charcoal:  #1A1A1A;
+  --light-charcoal:#252525;
+  --smoke: #2E2E2E;
+  --ash:   #888888;
+  --white: #F5F0EB;
+  --glow:  rgba(232, 98, 26, 0.35);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--deep-black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Typography ─────────────────────────────────────── */
+.section-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--fire-orange);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--fire-orange);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.section-title span { color: var(--fire-orange); }
+
+.section-desc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--ash);
+  max-width: 550px;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn-primary {
+  padding: 14px 36px;
+  background: var(--fire-orange);
+  color: var(--deep-black);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--fire-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232, 98, 26, 0.4);
+}
+
+.btn-secondary {
+  padding: 13px 36px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  display: inline-block;
+}
+.btn-secondary:hover {
+  border-color: var(--fire-orange);
+  color: var(--fire-orange);
+  transform: translateY(-2px);
+}
+
+/* Submit button (contact form) */
+.btn-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--fire-orange);
+  color: var(--deep-black);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-submit:hover { background: var(--fire-gold); transform: translateY(-2px); }
+.btn-submit.loading { opacity: 0.7; pointer-events: none; }
+.btn-submit.loading::after {
+  content: '';
+  display: inline-block;
+  width: 13px; height: 13px;
+  border: 2px solid rgba(8, 8, 8, 0.3);
+  border-top-color: var(--deep-black);
+  border-radius: 50%;
+  animation: btnSpin 0.7s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }

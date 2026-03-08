@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — FireChars.in</title>
+  <meta name="description" content="FireChars client portfolio — websites and apps built for Tushar Wagh, Jay Bhawani Farsana, New Vision Coaching, The Raghav Group, and Stadias.in.">
+  <link rel="canonical" href="https://firechars.in/clients.html">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    /* ══════════════════════════════════════════════
+       PAGE-LEVEL & HERO
+    ══════════════════════════════════════════════ */
+    body { background: var(--deep-black); }
+
+    .work-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 8rem 5% 6rem;
+    }
+
+    /* Animated diagonal stripes */
+    .hero-stripes {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent 0px, transparent 60px,
+        rgba(232,98,26,0.018) 60px, rgba(232,98,26,0.018) 61px
+      );
+      animation: stripeDrift 20s linear infinite;
+    }
+    @keyframes stripeDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 200px 200px; }
+    }
+
+    /* Grid overlay */
+    .hero-grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(232,98,26,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,98,26,0.035) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+
+    /* Radial glow */
+    .hero-radial {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 80%, rgba(232,98,26,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 20% 20%, rgba(200,134,10,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 80% 10%, rgba(232,98,26,0.05) 0%, transparent 70%);
+    }
+
+    .hero-content-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .work-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .work-eyebrow::before,
+    .work-eyebrow::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--fire-orange));
+    }
+    .work-eyebrow::after {
+      background: linear-gradient(to left, transparent, var(--fire-orange));
+    }
+
+    .work-hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: 6px;
+      color: var(--white);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .work-hero-title span { color: var(--fire-orange); }
+
+    .work-hero-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--ash);
+      max-width: 580px;
+      margin: 0 auto 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    /* Ticker stats strip */
+    .hero-stats-row {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      border: 1px solid rgba(232,98,26,0.15);
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s forwards;
+    }
+    .hero-stat {
+      flex: 1;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(232,98,26,0.15);
+      position: relative;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--fire-orange);
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+    .hero-stat-lbl {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 4px;
+    }
+
+    /* Scroll indicator */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
+    }
+    .hero-scroll-hint span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 1.5px solid var(--fire-orange);
+      border-bottom: 1.5px solid var(--fire-orange);
+      transform: rotate(45deg);
+      animation: arrowBounce 1.5s infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ══════════════════════════════════════════════
+       FEATURED CLIENTS — BIG SHOWCASE
+    ══════════════════════════════════════════════ */
+    .clients-section {
+      padding: 0 0 8rem;
+      background: var(--deep-black);
+    }
+
+    /* Section divider label */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 3rem 5%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(232,98,26,0.4), transparent);
+    }
+    .section-divider-line.right {
+      background: linear-gradient(to left, rgba(232,98,26,0.4), transparent);
+    }
+    .section-divider-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      white-space: nowrap;
+    }
+
+    /* ── Client Card ── */
+    .client-card {
+      max-width: 1300px;
+      margin: 0 auto 2px;
+      background: var(--dark-charcoal);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s;
+      padding: 0 5%;
+    }
+    .client-card:hover { background: var(--mid-charcoal); }
+
+    /* Left glow column on hover */
+    .client-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--fire-orange), transparent);
+      transform: scaleY(0);
+      transition: transform 0.5s ease;
+    }
+    .client-card:hover::before { transform: scaleY(1); }
+
+    .client-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      padding: 5rem 0;
+      border-bottom: 1px solid rgba(245,240,235,0.05);
+    }
+    .client-card:last-child .client-inner { border-bottom: none; }
+
+    /* Alternate layout */
+    .client-card.reverse .client-inner {
+      direction: rtl;
+    }
+    .client-card.reverse .client-inner > * {
+      direction: ltr;
+    }
+
+    /* Screen mockup */
+    .client-mockup {
+      position: relative;
+    }
+    .mockup-frame {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--light-charcoal);
+      border: 1px solid rgba(245,240,235,0.06);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(232,98,26,0.08);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .client-card:hover .mockup-frame {
+      transform: translateY(-6px) rotate(-0.5deg);
+      box-shadow:
+        0 50px 100px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(232,98,26,0.2),
+        0 0 60px rgba(232,98,26,0.06);
+    }
+
+    /* Browser bar */
+    .mockup-bar {
+      background: #1E1E1E;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mockup-dots { display: flex; gap: 6px; }
+    .mockup-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .mockup-dot:nth-child(1) { background: #FF5F57; }
+    .mockup-dot:nth-child(2) { background: #FFBD2E; }
+    .mockup-dot:nth-child(3) { background: #28CA41; }
+    .mockup-url {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Website preview — CSS-art representation */
+    .mockup-preview {
+      width: 100%;
+      aspect-ratio: 16/10;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Client info side */
+    .client-info { position: relative; }
+
+    .client-index {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      color: rgba(232,98,26,0.07);
+      line-height: 1;
+      letter-spacing: 4px;
+      position: absolute;
+      top: -1.5rem;
+      right: -1rem;
+      pointer-events: none;
+    }
+
+    .client-category {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .client-category::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--fire-orange);
+    }
+
+    .client-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: 3px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .client-url {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(232,98,26,0.7);
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .client-url svg { width: 12px; height: 12px; }
+
+    .client-desc {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--ash);
+      margin-bottom: 2rem;
+    }
+
+    /* Tech / services tags */
+    .client-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 2rem;
+    }
+    .tech-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      background: rgba(232,98,26,0.06);
+      border: 1px solid rgba(232,98,26,0.2);
+      color: rgba(232,98,26,0.8);
+    }
+
+    /* Visit link */
+    .client-visit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(245,240,235,0.15);
+    }
+    .client-visit:hover { color: var(--fire-orange); border-color: var(--fire-orange); }
+    .client-visit svg { width: 16px; height: 16px; transition: transform 0.3s; }
+    .client-visit:hover svg { transform: translate(3px, -3px); }
+
+    /* ── CSS website art previews for each client ── */
+
+    /* 1: Tushar Wagh — Personal Portfolio (dark, modern) */
+    .preview-tushar {
+      background: linear-gradient(135deg, #0A0A0F 0%, #0F0F1A 100%);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .preview-tushar .nav-mock { display: flex; justify-content: space-between; align-items: center; }
+    .preview-tushar .logo-mock { width: 40px; height: 8px; background: #6C63FF; border-radius: 2px; }
+    .preview-tushar .nav-links-mock { display: flex; gap: 12px; }
+    .preview-tushar .nav-link-mock { width: 28px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .preview-tushar .hero-mock { margin-top: 16px; }
+    .preview-tushar .hero-label { width: 60px; height: 5px; background: rgba(108,99,255,0.5); border-radius: 2px; margin-bottom: 8px; }
+    .preview-tushar .hero-h1-mock { width: 70%; height: 18px; background: rgba(255,255,255,0.85); border-radius: 3px; margin-bottom: 6px; }
+    .preview-tushar .hero-h2-mock { width: 50%; height: 14px; background: rgba(108,99,255,0.7); border-radius: 3px; margin-bottom: 12px; }
+    .preview-tushar .hero-p-mock { width: 80%; height: 5px; background: rgba(255,255,255,0.2); border-radius: 2px; margin-bottom: 5px; }
+    .preview-tushar .hero-p-mock.s { width: 65%; }
+    .preview-tushar .hero-btn-mock { margin-top: 12px; width: 90px; height: 28px; background: #6C63FF; border-radius: 4px; }
+    .preview-tushar .skills-row { display: flex; gap: 8px; margin-top: 16px; }
+    .preview-tushar .skill-chip { flex: 1; height: 40px; background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.25); border-radius: 4px; }
+
+    /* 2: Jay Bhawani Farsana — Traditional food, warm browns */
+    .preview-jaybhawani {
+      background: linear-gradient(135deg, #1A0F00 0%, #2A1500 100%);
+      padding: 24px;
+    }
+    .preview-jaybhawani .jb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .preview-jaybhawani .jb-logo { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #D4A853, #E8621A); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 0.5rem; color: white; letter-spacing: 1px; }
+    .preview-jaybhawani .jb-nav { display: flex; gap: 10px; }
+    .preview-jaybhawani .jb-nl { width: 32px; height: 5px; background: rgba(212,168,83,0.3); border-radius: 2px; }
+    .preview-jaybhawani .jb-hero { background: linear-gradient(to right, rgba(212,168,83,0.08), transparent); border: 1px solid rgba(212,168,83,0.15); border-radius: 6px; padding: 16px; display: flex; gap: 12px; align-items: center; }
+    .preview-jaybhawani .jb-text { flex: 1; }
+    .preview-jaybhawani .jb-h { width: 80%; height: 14px; background: rgba(212,168,83,0.7); border-radius: 2px; margin-bottom: 8px; }
+    .preview-jaybhawani .jb-p { width: 90%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 1px; margin-bottom: 4px; }
+    .preview-jaybhawani .jb-img-mock { width: 80px; height: 70px; background: linear-gradient(135deg, rgba(232,98,26,0.3), rgba(212,168,83,0.2)); border-radius: 6px; flex-shrink: 0; }
+    .preview-jaybhawani .jb-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 12px; }
+    .preview-jaybhawani .jb-item { height: 45px; background: rgba(212,168,83,0.08); border: 1px solid rgba(212,168,83,0.12); border-radius: 4px; }
+
+    /* 3: New Vision Coaching — Education, purple/blue */
+    .preview-newvision {
+      background: linear-gradient(135deg, #0D0D1A 0%, #12122A 100%);
+      padding: 24px;
+    }
+    .preview-newvision .nv-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .preview-newvision .nv-logo { width: 36px; height: 36px; background: linear-gradient(135deg, #6B48FF, #4488FF); border-radius: 50%; }
+    .preview-newvision .nv-name-block { flex: 1; }
+    .preview-newvision .nv-name { width: 120px; height: 8px; background: rgba(107,72,255,0.7); border-radius: 2px; margin-bottom: 4px; }
+    .preview-newvision .nv-sub { width: 80px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .preview-newvision .nv-hero { text-align: center; padding: 16px 0; }
+    .preview-newvision .nv-badge { width: 60px; height: 6px; background: rgba(107,72,255,0.5); border-radius: 2px; margin: 0 auto 8px; }
+    .preview-newvision .nv-h { width: 60%; height: 16px; background: rgba(255,255,255,0.8); border-radius: 3px; margin: 0 auto 8px; }
+    .preview-newvision .nv-p { width: 80%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 1px; margin: 0 auto 4px; }
+    .preview-newvision .nv-btns { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .preview-newvision .nv-btn { width: 80px; height: 26px; background: linear-gradient(90deg, #6B48FF, #4488FF); border-radius: 4px; }
+    .preview-newvision .nv-btn.ghost { background: transparent; border: 1px solid rgba(107,72,255,0.5); }
+    .preview-newvision .nv-courses { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: 14px; }
+    .preview-newvision .nv-course { height: 40px; background: rgba(107,72,255,0.08); border: 1px solid rgba(107,72,255,0.2); border-radius: 4px; }
+
+    /* 4: Raghav Group — Corp dark, gold/amber */
+    .preview-raghav {
+      background: linear-gradient(135deg, #080808 0%, #100C00 100%);
+      padding: 24px;
+    }
+    .preview-raghav .rg-nav { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid rgba(212,168,83,0.15); margin-bottom: 14px; }
+    .preview-raghav .rg-logo-row { display: flex; align-items: center; gap: 8px; }
+    .preview-raghav .rg-logo { width: 32px; height: 32px; background: linear-gradient(135deg, #D4A853, #C8860A); border-radius: 4px; }
+    .preview-raghav .rg-brand { width: 70px; height: 8px; background: rgba(212,168,83,0.6); border-radius: 2px; }
+    .preview-raghav .rg-links { display: flex; gap: 10px; }
+    .preview-raghav .rg-l { width: 30px; height: 5px; background: rgba(212,168,83,0.25); border-radius: 2px; }
+    .preview-raghav .rg-hero { background: linear-gradient(to right, rgba(212,168,83,0.06), transparent); border-left: 2px solid #D4A853; padding: 12px 16px; margin-bottom: 12px; }
+    .preview-raghav .rg-h { width: 75%; height: 16px; background: rgba(212,168,83,0.7); border-radius: 2px; margin-bottom: 8px; }
+    .preview-raghav .rg-p { width: 90%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 1px; margin-bottom: 4px; }
+    .preview-raghav .rg-services { display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; }
+    .preview-raghav .rg-s { height: 36px; background: rgba(212,168,83,0.06); border: 1px solid rgba(212,168,83,0.12); border-radius: 3px; }
+
+    /* 5: Stadias — Sports, red/dark */
+    .preview-stadias {
+      background: linear-gradient(135deg, #0A0E18 0%, #111827 100%);
+      padding: 24px;
+    }
+    .preview-stadias .st-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .preview-stadias .st-logo { width: 40px; height: 40px; background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.4); border-radius: 50%; }
+    .preview-stadias .st-links { display: flex; gap: 10px; }
+    .preview-stadias .st-l { width: 30px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .preview-stadias .st-btn { width: 70px; height: 24px; background: #C0392B; border-radius: 2px; }
+    .preview-stadias .st-hero { position: relative; background: linear-gradient(135deg, rgba(192,57,43,0.08), rgba(26,31,46,0.5)); border: 1px solid rgba(192,57,43,0.15); border-radius: 6px; padding: 18px; margin-bottom: 10px; }
+    .preview-stadias .st-badge { width: 60px; height: 5px; background: rgba(192,57,43,0.5); border-radius: 2px; margin-bottom: 8px; }
+    .preview-stadias .st-h { width: 65%; height: 18px; background: rgba(255,255,255,0.85); border-radius: 3px; margin-bottom: 10px; }
+    .preview-stadias .st-sub { width: 40%; height: 12px; background: rgba(192,57,43,0.7); border-radius: 2px; margin-bottom: 12px; }
+    .preview-stadias .st-p { width: 80%; height: 4px; background: rgba(255,255,255,0.15); border-radius: 1px; margin-bottom: 4px; }
+    .preview-stadias .st-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .preview-stadias .st-abtn { width: 80px; height: 24px; background: #C0392B; border-radius: 2px; }
+    .preview-stadias .st-abtn.g { background: transparent; border: 1px solid rgba(255,255,255,0.2); }
+    .preview-stadias .st-stats { display: flex; gap: 2px; }
+    .preview-stadias .st-stat { flex: 1; height: 40px; background: rgba(192,57,43,0.06); border: 1px solid rgba(192,57,43,0.12); }
+
+    /* ══════════════════════════════════════════════
+       MARQUEE STRIP
+    ══════════════════════════════════════════════ */
+    .clients-marquee-strip {
+      background: rgba(232,98,26,0.06);
+      border-top: 1px solid rgba(232,98,26,0.15);
+      border-bottom: 1px solid rgba(232,98,26,0.15);
+      overflow: hidden;
+      padding: 1rem 0;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 18s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 40px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--fire-orange); }
+
+    /* ══════════════════════════════════════════════
+       PROCESS / TRUST SECTION
+    ══════════════════════════════════════════════ */
+    .trust-section {
+      padding: 7rem 5%;
+      background: var(--dark-charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .trust-section::before {
+      content: 'TRUSTED';
+      position: absolute;
+      top: 50%; left: -2%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16vw;
+      color: rgba(232,98,26,0.025);
+      pointer-events: none;
+      letter-spacing: 10px;
+    }
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .trust-copy .section-title { margin-bottom: 1rem; }
+    .trust-copy .section-desc { margin-bottom: 2.5rem; }
+
+    .trust-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(232,98,26,0.1);
+    }
+    .trust-metric {
+      background: var(--mid-charcoal);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+    }
+    .trust-metric:hover { background: var(--light-charcoal); }
+    .trust-metric-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--fire-orange);
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+    .trust-metric-lbl {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════════════════════════
+       CTA
+    ══════════════════════════════════════════════ */
+    .work-cta {
+      padding: 8rem 5%;
+      background: var(--deep-black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 100%, rgba(232,98,26,0.1), transparent),
+        repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(232,98,26,0.015) 60px, rgba(232,98,26,0.015) 61px);
+    }
+    .work-cta h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: 4px;
+      color: var(--white);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .work-cta h2 span { color: var(--fire-orange); }
+    .work-cta p {
+      font-size: 1rem;
+      color: var(--ash);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      position: relative;
+    }
+    .cta-action-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    footer {
+      background: var(--deep-black);
+      border-top: 1px solid rgba(232,98,26,0.12);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:3px; color:var(--white); }
+    .footer-brand span { color:var(--fire-orange); }
+    .footer-copy { font-size:0.78rem; color:rgba(136,136,136,0.6); font-family:'Rajdhani',sans-serif; letter-spacing:1px; }
+    .footer-copy a { color:var(--fire-orange); text-decoration:none; }
+    .footer-tagline { font-family:'Rajdhani',sans-serif; font-size:0.7rem; letter-spacing:3px; color:rgba(136,136,136,0.5); }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .client-inner { grid-template-columns: 1fr; gap: 3rem; direction: ltr !important; }
+      .client-card.reverse .client-inner { direction: ltr; }
+      .trust-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; text-align: center; }
+      .hero-stats-row { flex-direction: column; }
+      .hero-stat { border-right: none; border-bottom: 1px solid rgba(232,98,26,0.15); }
+      .hero-stat:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .trust-metrics { grid-template-columns: 1fr; }
+      .cta-action-row { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <svg class="nav-logo-icon" viewBox="0 0 100 120" fill="none">
+        <path d="M50 8C50 8 78 30 78 58C78 78 66 95 50 100C34 95 22 78 22 58C22 30 50 8 50 8Z" fill="url(#nFO)" opacity="0.9"/>
+        <path d="M50 28C50 28 68 45 68 62C68 76 60 88 50 92C40 88 32 76 32 62C32 45 50 28 50 28Z" fill="url(#nFI)" opacity="0.7"/>
+        <text x="32" y="74" font-family="Arial Black" font-size="28" font-weight="900" fill="white" opacity="0.95">FC</text>
+        <defs>
+          <linearGradient id="nFO" x1="50" y1="8" x2="50" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C8860A"/><stop offset="50%" stop-color="#E8621A"/><stop offset="100%" stop-color="#8B4513"/></linearGradient>
+          <linearGradient id="nFI" x1="50" y1="28" x2="50" y2="92" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#F0A040"/><stop offset="100%" stop-color="#E8621A"/></linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-text"><span>FIRE</span>CHARS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="clients.html" style="color:var(--fire-orange)">Our Work</a></li>
+      <li><a href="index.html#viset">VISET</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <div class="work-hero">
+    <div class="hero-stripes"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-radial"></div>
+    <div class="hero-content-wrap">
+      <div class="work-eyebrow">Our Work &nbsp;·&nbsp; Client Portfolio</div>
+      <h1 class="work-hero-title">Built by<br><span>FireChars</span></h1>
+      <p class="work-hero-sub">Five brands. Five unique products. Real businesses powered by real code — from sports infrastructure to traditional snacks, coaching classes to corporate groups.</p>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-lbl">Live Clients</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5+</div>
+          <div class="hero-stat-lbl">Web Projects</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">3+</div>
+          <div class="hero-stat-lbl">Mobile Apps</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-lbl">Custom Built</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-arrow"></div>
+      <span>Explore Work</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ MARQUEE ═══════════════ -->
+  <div class="clients-marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>Tushar Wagh</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Jay Bhawani Farsana</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>New Vision Coaching</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>The Raghav Group</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Stadias.in</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Tushar Wagh</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Jay Bhawani Farsana</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>New Vision Coaching</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>The Raghav Group</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Stadias.in</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CLIENTS ═══════════════ -->
+  <section class="clients-section">
+
+    <div class="section-divider reveal">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-label">Client Showcase</span>
+      <div class="section-divider-line right"></div>
+    </div>
+
+    <!-- ── 01: Tushar Wagh ── -->
+    <div class="client-card reveal">
+      <div class="client-inner">
+        <div class="client-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="mockup-url">tusharwagh.com</div>
+            </div>
+            <div class="mockup-preview preview-tushar">
+              <div class="nav-mock"><div class="logo-mock"></div><div class="nav-links-mock"><div class="nav-link-mock"></div><div class="nav-link-mock"></div><div class="nav-link-mock"></div><div class="nav-link-mock"></div></div></div>
+              <div class="hero-mock">
+                <div class="hero-label"></div>
+                <div class="hero-h1-mock"></div>
+                <div class="hero-h2-mock"></div>
+                <div class="hero-p-mock"></div>
+                <div class="hero-p-mock s"></div>
+                <div class="hero-btn-mock"></div>
+              </div>
+              <div class="skills-row"><div class="skill-chip"></div><div class="skill-chip"></div><div class="skill-chip"></div><div class="skill-chip"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="client-info">
+          <div class="client-index">01</div>
+          <div class="client-category">Personal Portfolio · Professional</div>
+          <div class="client-name">Tushar Wagh</div>
+          <div class="client-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            tusharwagh.com
+          </div>
+          <p class="client-desc">A polished personal portfolio and professional website for Tushar Wagh — designed to make a powerful first impression, showcase skills and experience, and open doors to new opportunities. Clean, modern, and fully responsive across all devices.</p>
+          <div class="client-tech">
+            <span class="tech-tag">Portfolio Website</span>
+            <span class="tech-tag">Responsive Design</span>
+            <span class="tech-tag">Modern UI/UX</span>
+            <span class="tech-tag">Fast Loading</span>
+            <span class="tech-tag">SEO Optimised</span>
+          </div>
+          <a href="https://www.tusharwagh.com/" target="_blank" rel="noopener" class="client-visit">
+            Visit Website
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 02: Jay Bhawani Farsana ── -->
+    <div class="client-card reverse reveal">
+      <div class="client-inner">
+        <div class="client-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="mockup-url">jaybhawanifarsana.com</div>
+            </div>
+            <div class="mockup-preview preview-jaybhawani">
+              <div class="jb-header">
+                <div class="jb-logo">JB</div>
+                <div class="jb-nav"><div class="jb-nl"></div><div class="jb-nl"></div><div class="jb-nl"></div></div>
+              </div>
+              <div class="jb-hero">
+                <div class="jb-text"><div class="jb-h"></div><div class="jb-p"></div><div class="jb-p"></div><div class="jb-p" style="width:60%"></div></div>
+                <div class="jb-img-mock"></div>
+              </div>
+              <div class="jb-grid"><div class="jb-item"></div><div class="jb-item"></div><div class="jb-item"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="client-info">
+          <div class="client-index">02</div>
+          <div class="client-category">Food Business · E-commerce</div>
+          <div class="client-name">Jay Bhawani Farsana</div>
+          <div class="client-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            jaybhawanifarsana.com
+          </div>
+          <p class="client-desc">A vibrant brand website for Jay Bhawani Farsana Kendra — Kolhapur's beloved traditional snack business. Built with parallax effects, product showcase, WhatsApp ordering integration, FSSAI compliance details, and a warm visual identity that reflects authentic Kolhapuri culinary heritage.</p>
+          <div class="client-tech">
+            <span class="tech-tag">Business Website</span>
+            <span class="tech-tag">Parallax Effects</span>
+            <span class="tech-tag">WhatsApp Integration</span>
+            <span class="tech-tag">Product Showcase</span>
+            <span class="tech-tag">FSSAI Details</span>
+            <span class="tech-tag">Mobile Responsive</span>
+          </div>
+          <a href="https://jaybhawanifarsana.com/" target="_blank" rel="noopener" class="client-visit">
+            Visit Website
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 03: New Vision Coaching ── -->
+    <div class="client-card reveal">
+      <div class="client-inner">
+        <div class="client-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="mockup-url">newvisioncoaching.in</div>
+            </div>
+            <div class="mockup-preview preview-newvision">
+              <div class="nv-header">
+                <div class="nv-logo"></div>
+                <div class="nv-name-block"><div class="nv-name"></div><div class="nv-sub"></div></div>
+              </div>
+              <div class="nv-hero">
+                <div class="nv-badge"></div>
+                <div class="nv-h"></div>
+                <div class="nv-p"></div><div class="nv-p"></div>
+                <div class="nv-btns"><div class="nv-btn"></div><div class="nv-btn ghost"></div></div>
+              </div>
+              <div class="nv-courses"><div class="nv-course"></div><div class="nv-course"></div><div class="nv-course"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="client-info">
+          <div class="client-index">03</div>
+          <div class="client-category">Education · Coaching Institute</div>
+          <div class="client-name">New Vision Coaching</div>
+          <div class="client-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            newvisioncoaching.in
+          </div>
+          <p class="client-desc">A complete digital presence for New Vision Coaching Classes — featuring course overviews, batch timings, results, faculty profiles, and online enquiry. We also built their Student Attendance mobile app that allows teachers to mark, track, and share subject-wise attendance PDFs instantly.</p>
+          <div class="client-tech">
+            <span class="tech-tag">Education Website</span>
+            <span class="tech-tag">Course Listing</span>
+            <span class="tech-tag">Mobile App</span>
+            <span class="tech-tag">Student Attendance App</span>
+            <span class="tech-tag">PDF Generation</span>
+            <span class="tech-tag">WhatsApp Sharing</span>
+          </div>
+          <a href="https://www.newvisioncoaching.in/overview" target="_blank" rel="noopener" class="client-visit">
+            Visit Website
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 04: The Raghav Group ── -->
+    <div class="client-card reverse reveal">
+      <div class="client-inner">
+        <div class="client-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="mockup-url">theraghavgroup.in</div>
+            </div>
+            <div class="mockup-preview preview-raghav">
+              <div class="rg-nav">
+                <div class="rg-logo-row"><div class="rg-logo"></div><div class="rg-brand"></div></div>
+                <div class="rg-links"><div class="rg-l"></div><div class="rg-l"></div><div class="rg-l"></div></div>
+              </div>
+              <div class="rg-hero"><div class="rg-h"></div><div class="rg-p"></div><div class="rg-p" style="width:75%"></div><div class="rg-p" style="width:55%"></div></div>
+              <div class="rg-services"><div class="rg-s"></div><div class="rg-s"></div><div class="rg-s"></div><div class="rg-s"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="client-info">
+          <div class="client-index">04</div>
+          <div class="client-category">Corporate · Multi-Vertical Group</div>
+          <div class="client-name">The Raghav Group</div>
+          <div class="client-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            theraghavgroup.in
+          </div>
+          <p class="client-desc">A corporate brand website for The Raghav Group — a multi-vertical organisation spanning technology, services, and development. Designed to convey professionalism, trust, and scale. We also power their suite of products including the Rotary Club AttendEase and Student Attendance apps under the Raghav Group umbrella.</p>
+          <div class="client-tech">
+            <span class="tech-tag">Corporate Website</span>
+            <span class="tech-tag">Brand Identity</span>
+            <span class="tech-tag">Multi-Vertical</span>
+            <span class="tech-tag">Product Ecosystem</span>
+            <span class="tech-tag">Mobile Apps</span>
+            <span class="tech-tag">SEO</span>
+          </div>
+          <a href="https://theraghavgroup.in/" target="_blank" rel="noopener" class="client-visit">
+            Visit Website
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 05: Stadias ── -->
+    <div class="client-card reveal">
+      <div class="client-inner">
+        <div class="client-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <div class="mockup-dots"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+              <div class="mockup-url">stadias.in</div>
+            </div>
+            <div class="mockup-preview preview-stadias">
+              <div class="st-nav">
+                <div class="st-logo"></div>
+                <div class="st-links"><div class="st-l"></div><div class="st-l"></div><div class="st-l"></div></div>
+                <div class="st-btn"></div>
+              </div>
+              <div class="st-hero">
+                <div class="st-badge"></div>
+                <div class="st-h"></div>
+                <div class="st-sub"></div>
+                <div class="st-p"></div><div class="st-p" style="width:65%"></div>
+                <div class="st-actions"><div class="st-abtn"></div><div class="st-abtn g"></div></div>
+              </div>
+              <div class="st-stats"><div class="st-stat"></div><div class="st-stat"></div><div class="st-stat"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="client-info">
+          <div class="client-index">05</div>
+          <div class="client-category">Sports Infrastructure · Premium Website</div>
+          <div class="client-name">Stadias.in</div>
+          <div class="client-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            stadias.in
+          </div>
+          <p class="client-desc">Our flagship build — a premium parallax website for Stadias, India's trusted sports infrastructure company with 300+ turf installations across 15+ states. Features immersive parallax sections, animated project showcases, a full enquiry form with Gmail integration, custom cursor, scroll reveal animations, and structured data for SEO.</p>
+          <div class="client-tech">
+            <span class="tech-tag">Parallax Website</span>
+            <span class="tech-tag">Custom Cursor</span>
+            <span class="tech-tag">Scroll Animations</span>
+            <span class="tech-tag">Enquiry Form</span>
+            <span class="tech-tag">Gmail Integration</span>
+            <span class="tech-tag">WhatsApp FAB</span>
+            <span class="tech-tag">Structured Data / SEO</span>
+            <span class="tech-tag">Fully Responsive</span>
+          </div>
+          <a href="https://stadias.in/" target="_blank" rel="noopener" class="client-visit">
+            Visit Website
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════ TRUST METRICS ═══════════════ -->
+  <section class="trust-section">
+    <div class="trust-inner">
+      <div class="trust-copy">
+        <div class="section-label reveal">Why Clients Choose Us</div>
+        <h2 class="section-title reveal">Delivered on<br><span>Every Brief</span></h2>
+        <p class="section-desc reveal">From a single-page portfolio to a full product ecosystem — we treat every project with the same level of care, craftsmanship, and technical depth. Our clients come back because we deliver more than they asked for.</p>
+        <div style="margin-top:2.5rem;" class="reveal reveal-delay-2">
+          <a href="index.html#contact" class="btn-primary">Start Your Project</a>
+        </div>
+      </div>
+      <div class="trust-metrics reveal reveal-delay-1">
+        <div class="trust-metric">
+          <div class="trust-metric-num">5+</div>
+          <div class="trust-metric-lbl">Live Websites</div>
+        </div>
+        <div class="trust-metric">
+          <div class="trust-metric-num">3+</div>
+          <div class="trust-metric-lbl">Mobile Apps Built</div>
+        </div>
+        <div class="trust-metric">
+          <div class="trust-metric-num">100%</div>
+          <div class="trust-metric-lbl">On-Time Delivery</div>
+        </div>
+        <div class="trust-metric">
+          <div class="trust-metric-num">∞</div>
+          <div class="trust-metric-lbl">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA ═══════════════ -->
+  <div class="work-cta">
+    <h2 class="reveal">Your Brand.<br><span>Our Next Build.</span></h2>
+    <p class="reveal reveal-delay-1">Ready to join our client list? Whether it's a website, mobile app, or full digital ecosystem — we'll build it right.</p>
+    <div class="cta-action-row reveal reveal-delay-2">
+      <a href="index.html#contact" class="btn-primary">Start a Project</a>
+      <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20want%20to%20discuss%20a%20new%20project." target="_blank" class="btn-secondary">Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <div class="footer-brand"><span>FIRE</span>CHARS</div>
+    <div class="footer-copy">&copy; <span id="yr"></span> FireChars.in &nbsp;·&nbsp; Rebranded from <a href="https://semanticdata.online" target="_blank">SemanticData.Online</a></div>
+    <div class="footer-tagline">CHARACTERS THAT POWER INNOVATION</div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <div class="whatsapp-fab">
+    <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20want%20to%20discuss%20a%20new%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </a>
+  </div>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
