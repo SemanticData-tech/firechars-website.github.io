@@ -375,6 +375,16 @@
 @media (max-width: 900px) {
   .products-grid { grid-template-columns: 1fr; }
   .product-screenshot { height: 280px; }
+  #pfos-product {
+    grid-column: span 1 !important;
+    display: block !important;
+  }
+  #pfos-product .product-screenshot {
+    height: 260px;
+  }
+  #pfos-product .product-info {
+    padding: 2rem 2rem 2.5rem !important;
+  }
 }
 @media (max-width: 600px) {
   .product-info { padding: 1.5rem; }
