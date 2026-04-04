@@ -376,20 +376,20 @@
   flex-shrink: 0;
 }
 
-/* ── VISET ───────────────────────────────────────────── */
-#viset {
+/* ── PERSONAL FINANCE OS ─────────────────────────────── */
+#pfos {
   padding: 8rem 5%;
   background: var(--deep-black);
   position: relative;
   overflow: hidden;
 }
-#viset::before {
+#pfos::before {
   content: '';
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 70% 70% at 100% 50%, rgba(232,98,26,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
-.viset-inner {
+.pfos-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
@@ -399,28 +399,37 @@
   position: relative;
   z-index: 1;
 }
-.viset-visual {
+.pfos-visual {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
   background: rgba(232, 98, 26, 0.1);
 }
-.viset-metric {
+.pfos-module {
   background: var(--dark-charcoal);
   padding: 2rem;
   position: relative;
   overflow: hidden;
   transition: background 0.3s;
 }
-.viset-metric:hover { background: var(--mid-charcoal); }
-.viset-metric-value {
+.pfos-module:hover { background: var(--mid-charcoal); }
+.pfos-module-wide {
+  grid-column: span 2;
+}
+.pfos-module-icon {
+  color: var(--fire-orange);
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+  display: block;
+}
+.pfos-module-value {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.8rem;
   color: var(--fire-orange);
   line-height: 1;
   letter-spacing: 2px;
 }
-.viset-metric-label {
+.pfos-module-label {
   font-family: 'Rajdhani', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 2px;
@@ -428,11 +437,11 @@
   color: var(--ash);
   margin-top: 6px;
 }
-.viset-metric-shine {
+.pfos-module-shine {
   position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(232,98,26,0.04) 0%, transparent 50%);
 }
-.viset-metric.accent {
+.pfos-module.accent {
   background: linear-gradient(135deg, rgba(232,98,26,0.12), rgba(200,134,10,0.06));
 }
 

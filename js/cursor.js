@@ -24,7 +24,7 @@
   }
   animateCursor();
 
-  document.querySelectorAll('a, button, .service-card, .viset-metric').forEach(el => {
+  document.querySelectorAll('a, button, .service-card, .pfos-module').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.classList.add('hover');
       ring.classList.add('hover');

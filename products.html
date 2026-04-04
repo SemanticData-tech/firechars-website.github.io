@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Products — FireChars.in</title>
-  <meta name="description" content="Explore FireChars ready-to-deploy products — AttendEase, Billing Manager, Report Card Generator, Student Attendance. Built for real businesses.">
-  <meta name="keywords" content="AttendEase, Billing Manager, Report Card, Student Attendance, FireChars products, mobile apps, web apps">
+  <meta name="description" content="Explore FireChars products — Personal Finance OS, AttendEase, Billing Manager, Report Card Generator. Built for real Indian families and businesses.">
+  <meta name="keywords" content="Personal Finance OS, FireChars FinanceOS, AttendEase, Billing Manager, Report Card, FireChars products, Indian personal finance app">
   <meta name="author" content="FireChars.in">
   <link rel="canonical" href="https://firechars.in/products.html">
 
@@ -63,9 +63,18 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#services">Services</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="products.html" style="color:var(--fire-orange);">Products</a></li>
+      <li class="nav-dropdown-wrap">
+        <a href="products.html">Products</a>
+        <ul class="nav-dropdown">
+          <li><a href="products.html#pfos-product"><span class="nav-dropdown-num">00</span>Finance OS</a></li>
+          <li><a href="products.html#attendease-product"><span class="nav-dropdown-num">01</span>AttendEase</a></li>
+          <li><a href="products.html#billing-product"><span class="nav-dropdown-num">02</span>Billing Manager</a></li>
+          <li><a href="products.html#reportcard-product"><span class="nav-dropdown-num">03</span>Report Card</a></li>
+          <li><a href="products.html#attendance-product"><span class="nav-dropdown-num">04</span>Student Attendance</a></li>
+        </ul>
+      </li>
       <li><a href="clients.html">Our Work</a></li>
-      <li><a href="index.html#viset">VISET</a></li>
+
       <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -91,6 +100,7 @@
         <button class="filter-tag" onclick="filterProducts('attendance', this)">Attendance</button>
         <button class="filter-tag" onclick="filterProducts('billing', this)">Billing</button>
         <button class="filter-tag" onclick="filterProducts('education', this)">Education</button>
+        <button class="filter-tag" onclick="filterProducts('finance', this)">Finance</button>
       </div>
     </div>
   </div>
@@ -101,7 +111,7 @@
   <section class="products-section">
 
     <div class="products-count-bar reveal">
-      <div class="products-count">Showing <span id="visibleCount">4</span> of <span>4</span> products</div>
+      <div class="products-count">Showing <span id="visibleCount">5</span> of <span>5</span> products</div>
       <div style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(136,136,136,0.5);">
         All Products · Ready to Deploy
       </div>
@@ -109,8 +119,43 @@
 
     <div class="products-grid" id="productsGrid">
 
+      <!-- ── PRODUCT 0: Personal Finance OS ─────────── -->
+      <div id="pfos-product" class="product-card reveal" data-tags="web finance" style="grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+
+        <div class="product-screenshot" style="height:380px;">
+          <img src="assets/images/product-financeOS.svg" alt="FireChars Personal Finance OS — Budget, FIDOK, Loan, Wealth">
+        </div>
+
+        <div class="product-info" style="padding: 2.5rem 3rem;">
+          <div class="product-badge" style="position:relative;top:auto;right:auto;display:inline-block;margin-bottom:1.5rem;">Early Access</div>
+          <div class="product-platform">Web &amp; Mobile · Android &amp; iOS</div>
+          <div class="product-name">Personal Finance OS</div>
+          <div class="product-tagline">One OS for Every Rupee Your Family Manages</div>
+          <p class="product-desc">
+            A complete personal finance operating system built for Indian families. Four integrated modules — Budget Engine, FIDOK Vault, Loan Module, and Wealth Dashboard — working from a single encrypted local data store. No server. No subscription trap. No data leaks. Your money, your device, your control.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Budget Engine</span>
+            <span class="product-feature">FIDOK Family Vault</span>
+            <span class="product-feature">Loan Prepayment Tracker</span>
+            <span class="product-feature">Wealth Dashboard</span>
+            <span class="product-feature">AES-256 Encrypted</span>
+            <span class="product-feature">Local-First · No Cloud Required</span>
+            <span class="product-feature">3-Tier Family Sharing</span>
+            <span class="product-feature">SIP &amp; EMI Tracking</span>
+            <span class="product-feature">DPDP Act 2023 Compliant</span>
+          </div>
+          <div class="product-actions">
+            <a href="index.html#contact" class="btn-demo">Get Early Access</a>
+            <a href="index.html#pfos" class="btn-enquire">See Full Details</a>
+          </div>
+        </div>
+
+        <div class="product-num">00</div>
+      </div>
+
       <!-- ── PRODUCT 1: AttendEase ─────────────────────── -->
-      <div class="product-card reveal" data-tags="mobile attendance">
+      <div id="attendease-product" class="product-card reveal" data-tags="mobile attendance">
         <div class="product-badge">Mobile App</div>
 
         <div class="product-screenshot">
@@ -142,7 +187,7 @@
       </div>
 
       <!-- ── PRODUCT 2: Billing Manager ────────────────── -->
-      <div class="product-card reveal reveal-delay-1" data-tags="mobile billing">
+      <div id="billing-product" class="product-card reveal reveal-delay-1" data-tags="mobile billing">
         <div class="product-badge new">Mobile App</div>
 
         <div class="product-screenshot">
@@ -175,7 +220,7 @@
       </div>
 
       <!-- ── PRODUCT 3: Report Card Generator ──────────── -->
-      <div class="product-card reveal reveal-delay-2" data-tags="web education">
+      <div id="reportcard-product" class="product-card reveal reveal-delay-2" data-tags="web education">
         <div class="product-badge web">Web App</div>
 
         <div class="product-screenshot">
@@ -209,7 +254,7 @@
       </div>
 
       <!-- ── PRODUCT 4: Student Attendance ─────────────── -->
-      <div class="product-card reveal reveal-delay-3" data-tags="mobile attendance education">
+      <div id="attendance-product" class="product-card reveal reveal-delay-3" data-tags="mobile attendance education">
         <div class="product-badge new">Mobile App</div>
 
         <div class="product-screenshot">
@@ -316,7 +361,6 @@
   <script>
     // ── Product Filter ──────────────────────────────────────
     function filterProducts(tag, btn) {
-      // Update active button
       document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -326,14 +370,21 @@
       cards.forEach(card => {
         const tags = card.getAttribute('data-tags') || '';
         const show = tag === 'all' || tags.includes(tag);
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
+        if (show) {
+          card.style.display = '';
+          // Restore span-2 for the Finance OS flagship card
+          if (card.id === 'pfos-product') {
+            card.style.gridColumn = 'span 2';
+          }
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
       });
 
       document.getElementById('visibleCount').textContent = visible;
       document.getElementById('noResults').style.display  = visible === 0 ? 'block' : 'none';
 
-      // Fix grid gap when items are hidden
       const grid = document.getElementById('productsGrid');
       grid.style.background = visible === 0 ? 'transparent' : 'rgba(232,98,26,0.08)';
     }

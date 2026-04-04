@@ -11,15 +11,15 @@
 
 /* ══════════════ LARGE SCREENS  ≥ 1280px ══════════════ */
 @media (min-width: 1280px) {
-  .services-grid,.about-inner,.viset-inner,.contact-layout,.feature-band-content{max-width:1300px;margin-left:auto;margin-right:auto}
+  .services-grid,.about-inner,.pfos-inner,.contact-layout,.feature-band-content{max-width:1300px;margin-left:auto;margin-right:auto}
   .hero-title{font-size:10rem}
 }
 
 /* ══════════════ ULTRA-WIDE  ≥ 1600px ══════════════ */
 @media (min-width: 1600px) {
   nav{padding:0 8%}
-  #services,#about,#viset,#contact,.feature-band,.stats-bar{padding-left:8%;padding-right:8%}
-  .services-grid,.about-inner,.viset-inner,.contact-layout,.feature-band-content{max-width:1400px}
+  #services,#about,#pfos,#contact,.feature-band,.stats-bar{padding-left:8%;padding-right:8%}
+  .services-grid,.about-inner,.pfos-inner,.contact-layout,.feature-band-content{max-width:1400px}
   .hero-title{font-size:11rem}
 }
 
@@ -29,7 +29,7 @@
   .nav-links a{font-size:0.8rem;letter-spacing:1.5px}
   .services-grid{grid-template-columns:1fr 1fr}
   .about-inner{gap:3rem}
-  .viset-inner{gap:3rem}
+  .pfos-inner{gap:3rem}
   .feature-band-content{gap:3rem}
   .contact-layout{gap:4rem}
   .client-inner{gap:3rem}
@@ -76,9 +76,9 @@
   .feature-band{padding:5rem 5%}
   .feature-band-content{grid-template-columns:1fr;gap:2.5rem}
   .feature-quote{font-size:clamp(1.8rem,6vw,3rem)}
-  #viset{padding:5rem 5%}
-  .viset-inner{grid-template-columns:1fr;gap:3rem}
-  .viset-visual{grid-template-columns:repeat(2,1fr)}
+  #pfos{padding:5rem 5%}
+  .pfos-inner{grid-template-columns:1fr;gap:3rem}
+  .pfos-visual{grid-template-columns:repeat(2,1fr)}
   #contact{padding:5rem 5%}
   .contact-layout{grid-template-columns:1fr;gap:3rem}
   .form-row{grid-template-columns:1fr}
@@ -127,7 +127,7 @@
   .about-tag{font-size:.6rem;padding:5px 10px}
   .pillar-name{font-size:.9rem}
   .pillar-desc{font-size:.82rem}
-  .viset-metric-value{font-size:2.2rem}
+  .pfos-module-value{font-size:2.2rem}
   .form-input,.form-select,.form-textarea{padding:12px 14px;font-size:.85rem}
   .btn-submit{padding:16px;font-size:.8rem}
   .products-hero h1{font-size:clamp(2.5rem,10vw,4.5rem)}
@@ -172,11 +172,11 @@
   .feature-band{padding:4rem 4%}
   .feature-band-content{gap:2rem}
   .feature-list li{font-size:.85rem}
-  #viset{padding:4rem 4%}
-  .viset-visual{grid-template-columns:1fr 1fr;gap:1px}
-  .viset-metric{padding:1.2rem}
-  .viset-metric-value{font-size:1.8rem}
-  .viset-metric-label{font-size:.6rem;letter-spacing:1px}
+  #pfos{padding:4rem 4%}
+  .pfos-visual{grid-template-columns:1fr 1fr;gap:1px}
+  .pfos-module{padding:1.2rem}
+  .pfos-module-value{font-size:1.8rem}
+  .pfos-module-label{font-size:.6rem;letter-spacing:1px}
   #contact{padding:4rem 4%}
   .contact-detail{gap:12px}
   .contact-detail-icon{width:34px;height:34px;flex-shrink:0}
@@ -245,8 +245,8 @@
   .section-title{font-size:clamp(1.8rem,9vw,3rem);letter-spacing:2px}
   .service-name{font-size:1rem}
   .service-desc{font-size:.82rem}
-  .viset-metric-value{font-size:1.6rem}
-  .viset-metric{padding:1rem}
+  .pfos-module-value{font-size:1.6rem}
+  .pfos-module{padding:1rem}
   .product-screenshot{height:180px}
   .product-name{font-size:1.3rem;letter-spacing:1px}
   .product-tagline{font-size:.82rem}

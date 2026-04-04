@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="600" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8621A"/>
+      <stop offset="100%" stop-color="#C8860A"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A2E1A"/>
+      <stop offset="100%" stop-color="#111A11"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1A2E"/>
+      <stop offset="100%" stop-color="#0A1420"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A1228"/>
+      <stop offset="100%" stop-color="#120D1E"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2A1E08"/>
+      <stop offset="100%" stop-color="#1E1506"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="380" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <line x1="0" y1="60" x2="600" y2="60" stroke="#E8621A" stroke-width="0.3" opacity="0.1"/>
+  <line x1="0" y1="190" x2="600" y2="190" stroke="#E8621A" stroke-width="0.3" opacity="0.08"/>
+  <line x1="0" y1="320" x2="600" y2="320" stroke="#E8621A" stroke-width="0.3" opacity="0.06"/>
+  <line x1="150" y1="0" x2="150" y2="380" stroke="#E8621A" stroke-width="0.3" opacity="0.06"/>
+  <line x1="300" y1="0" x2="300" y2="380" stroke="#E8621A" stroke-width="0.3" opacity="0.08"/>
+  <line x1="450" y1="0" x2="450" y2="380" stroke="#E8621A" stroke-width="0.3" opacity="0.06"/>
+
+  <!-- ── HEADER BAR ── -->
+  <rect x="0" y="0" width="600" height="56" fill="url(#headerGrad)"/>
+  <line x1="0" y1="56" x2="600" y2="56" stroke="#E8621A" stroke-width="1" opacity="0.3"/>
+
+  <!-- Flame icon -->
+  <path d="M22 28 C22 28 18 23 18 19 C18 15.7 19.8 13 22 12 C21.2 13.8 21.6 15.4 22.8 16.2 C22.8 14 24.2 12 24.2 12 C24.2 12 28 15 28 19 C28 22.3 26.2 25.5 26.2 25.5 C26.2 23.5 25 22.5 24 22 C24.8 23.8 24.2 26 22 28Z" fill="url(#orangeGrad)" opacity="0.95"/>
+
+  <!-- Brand name -->
+  <text x="36" y="32" font-family="Arial Black, sans-serif" font-size="11" font-weight="900" fill="#F5F0EB" letter-spacing="3" opacity="0.9">FIRE</text>
+  <text x="65" y="32" font-family="Arial Black, sans-serif" font-size="11" font-weight="900" fill="#888888" letter-spacing="3">CHARS</text>
+  <text x="36" y="46" font-family="Arial, sans-serif" font-size="7" fill="#E8621A" letter-spacing="3" opacity="0.8">PERSONAL FINANCE OS</text>
+
+  <!-- Header right — date/status -->
+  <text x="540" y="28" font-family="Arial, sans-serif" font-size="8" fill="#888888" text-anchor="middle" letter-spacing="1">APR 2026</text>
+  <rect x="510" y="36" width="60" height="1" fill="#E8621A" opacity="0.2"/>
+  <text x="540" y="48" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D" text-anchor="middle" letter-spacing="1">● ACTIVE</text>
+
+  <!-- ── MODULE GRID — 2×2 ── -->
+
+  <!-- MODULE 1: BUDGET ENGINE (top-left) -->
+  <rect x="1" y="57" width="298" height="130" fill="url(#greenGrad)"/>
+  <rect x="1" y="57" width="298" height="2" fill="#4CAF7D" opacity="0.6"/>
+  <!-- Module label -->
+  <text x="16" y="75" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D" letter-spacing="3" opacity="0.9">BUDGET ENGINE</text>
+  <!-- Big value -->
+  <text x="16" y="108" font-family="Arial Black, sans-serif" font-size="26" font-weight="900" fill="#4CAF7D" letter-spacing="1" opacity="0.95">₹1,51,161</text>
+  <text x="16" y="122" font-family="Arial, sans-serif" font-size="8" fill="#888888" letter-spacing="2">Monthly in-hand · May 2026</text>
+  <!-- Mini bars -->
+  <text x="16" y="140" font-family="Arial, sans-serif" font-size="7" fill="#666666" letter-spacing="1">Fixed</text>
+  <rect x="44" y="133" width="80" height="5" rx="2" fill="#222222"/>
+  <rect x="44" y="133" width="55" height="5" rx="2" fill="#E8621A" opacity="0.7"/>
+  <text x="130" y="140" font-family="Arial, sans-serif" font-size="7" fill="#E8621A">₹37k</text>
+  <text x="16" y="153" font-family="Arial, sans-serif" font-size="7" fill="#666666" letter-spacing="1">Surplus</text>
+  <rect x="44" y="146" width="80" height="5" rx="2" fill="#222222"/>
+  <rect x="44" y="146" width="15" height="5" rx="2" fill="#4CAF7D" opacity="0.8"/>
+  <text x="130" y="153" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D">+₹11k</text>
+  <!-- Separator -->
+  <line x1="1" y1="162" x2="299" y2="162" stroke="#E8621A" opacity="0.06"/>
+  <!-- Month badge -->
+  <rect x="200" y="68" width="84" height="16" rx="3" fill="#4CAF7D" opacity="0.1"/>
+  <rect x="200" y="68" width="84" height="16" rx="3" fill="none" stroke="#4CAF7D" stroke-width="0.5" opacity="0.4"/>
+  <text x="242" y="79" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D" text-anchor="middle" letter-spacing="1">NEW REGIME ✓</text>
+
+  <!-- MODULE 2: FIDOK VAULT (top-right) -->
+  <rect x="301" y="57" width="298" height="130" fill="url(#amberGrad)"/>
+  <rect x="301" y="57" width="298" height="2" fill="#E8621A" opacity="0.7"/>
+  <text x="316" y="75" font-family="Arial, sans-serif" font-size="7" fill="#E8621A" letter-spacing="3" opacity="0.9">FIDOK VAULT</text>
+  <!-- Vault rows -->
+  <text x="316" y="95" font-family="Arial, sans-serif" font-size="8" fill="#F5F0EB" letter-spacing="1" opacity="0.9">● TATA AIA Term — ₹2 Crore</text>
+  <line x1="316" y1="100" x2="588" y2="100" stroke="#333333" stroke-width="0.5"/>
+  <text x="316" y="115" font-family="Arial, sans-serif" font-size="8" fill="#F5F0EB" letter-spacing="1" opacity="0.9">● Niva Bupa Aspire Titanium+</text>
+  <line x1="316" y1="120" x2="588" y2="120" stroke="#333333" stroke-width="0.5"/>
+  <text x="316" y="135" font-family="Arial, sans-serif" font-size="8" fill="#F5F0EB" letter-spacing="1" opacity="0.9">● IDBI Home Loan</text>
+  <line x1="316" y1="140" x2="588" y2="140" stroke="#333333" stroke-width="0.5"/>
+  <text x="316" y="155" font-family="Arial, sans-serif" font-size="8" fill="#F5F0EB" letter-spacing="1" opacity="0.9">● LIC Jeevan Umang</text>
+  <!-- Member count -->
+  <rect x="485" y="67" width="98" height="16" rx="3" fill="#E8621A" opacity="0.1"/>
+  <rect x="485" y="67" width="98" height="16" rx="3" fill="none" stroke="#E8621A" stroke-width="0.5" opacity="0.4"/>
+  <text x="534" y="78" font-family="Arial, sans-serif" font-size="7" fill="#E8621A" text-anchor="middle" letter-spacing="1">5 FAMILY MEMBERS</text>
+  <!-- Separator -->
+  <line x1="301" y1="162" x2="599" y2="162" stroke="#E8621A" opacity="0.06"/>
+
+  <!-- MODULE 3: LOAN MODULE (bottom-left) -->
+  <rect x="1" y="189" width="298" height="130" fill="url(#blueGrad)"/>
+  <rect x="1" y="189" width="298" height="2" fill="#4A9FD4" opacity="0.6"/>
+  <text x="16" y="207" font-family="Arial, sans-serif" font-size="7" fill="#4A9FD4" letter-spacing="3" opacity="0.9">LOAN MODULE</text>
+  <!-- Loan value -->
+  <text x="16" y="235" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#4A9FD4" letter-spacing="1" opacity="0.95">₹11,56,168</text>
+  <text x="16" y="249" font-family="Arial, sans-serif" font-size="8" fill="#888888" letter-spacing="1">Outstanding · IDBI · 8.5% p.a.</text>
+  <!-- Progress bar -->
+  <text x="16" y="266" font-family="Arial, sans-serif" font-size="7" fill="#666666">Paid off</text>
+  <rect x="55" y="259" width="130" height="6" rx="3" fill="#1A2A3A"/>
+  <rect x="55" y="259" width="69" height="6" rx="3" fill="#4A9FD4" opacity="0.8"/>
+  <text x="192" y="266" font-family="Arial, sans-serif" font-size="7" fill="#4A9FD4">~53%</text>
+  <!-- Next prepayment -->
+  <rect x="16" y="273" width="240" height="22" rx="3" fill="#4A9FD4" opacity="0.07"/>
+  <rect x="16" y="273" width="240" height="22" rx="3" fill="none" stroke="#4A9FD4" stroke-width="0.5" opacity="0.3"/>
+  <text x="136" y="287" font-family="Arial, sans-serif" font-size="7.5" fill="#4A9FD4" text-anchor="middle" letter-spacing="1">Next prepay: Aug 2026 · ₹34k saved</text>
+  <!-- Target -->
+  <text x="16" y="308" font-family="Arial, sans-serif" font-size="7" fill="#888888" letter-spacing="1">Target closure: 2028 · 6-month gap rule ✓</text>
+  <!-- Separator -->
+  <line x1="1" y1="317" x2="299" y2="317" stroke="#E8621A" opacity="0.06"/>
+
+  <!-- MODULE 4: WEALTH DASHBOARD (bottom-right) -->
+  <rect x="301" y="189" width="298" height="130" fill="url(#purpleGrad)"/>
+  <rect x="301" y="189" width="298" height="2" fill="#9B7FD4" opacity="0.6"/>
+  <text x="316" y="207" font-family="Arial, sans-serif" font-size="7" fill="#9B7FD4" letter-spacing="3" opacity="0.9">WEALTH DASHBOARD</text>
+  <!-- Net worth -->
+  <text x="316" y="232" font-family="Arial Black, sans-serif" font-size="20" font-weight="900" fill="#9B7FD4" letter-spacing="1" opacity="0.95">₹14.56L</text>
+  <text x="316" y="245" font-family="Arial, sans-serif" font-size="8" fill="#888888" letter-spacing="1">Total liquid assets · Apr 2026</text>
+  <!-- Breakdown bars -->
+  <text x="316" y="262" font-family="Arial, sans-serif" font-size="7" fill="#666666">EPF</text>
+  <rect x="335" y="255" width="100" height="5" rx="2" fill="#1A1428"/>
+  <rect x="335" y="255" width="60" height="5" rx="2" fill="#4CAF7D" opacity="0.7"/>
+  <text x="440" y="262" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D">₹6.44L</text>
+  <text x="316" y="276" font-family="Arial, sans-serif" font-size="7" fill="#666666">MF</text>
+  <rect x="335" y="269" width="100" height="5" rx="2" fill="#1A1428"/>
+  <rect x="335" y="269" width="35" height="5" rx="2" fill="#9B7FD4" opacity="0.7"/>
+  <text x="440" y="276" font-family="Arial, sans-serif" font-size="7" fill="#9B7FD4">₹2.43L</text>
+  <text x="316" y="290" font-family="Arial, sans-serif" font-size="7" fill="#666666">Stocks</text>
+  <rect x="335" y="283" width="100" height="5" rx="2" fill="#1A1428"/>
+  <rect x="335" y="283" width="18" height="5" rx="2" fill="#4A9FD4" opacity="0.7"/>
+  <text x="440" y="290" font-family="Arial, sans-serif" font-size="7" fill="#4A9FD4">₹1.16L</text>
+  <!-- SIP badge -->
+  <rect x="316" y="300" width="166" height="16" rx="3" fill="#9B7FD4" opacity="0.08"/>
+  <rect x="316" y="300" width="166" height="16" rx="3" fill="none" stroke="#9B7FD4" stroke-width="0.5" opacity="0.3"/>
+  <text x="399" y="311" font-family="Arial, sans-serif" font-size="7" fill="#9B7FD4" text-anchor="middle" letter-spacing="1">SIP ₹27,000/mo · On Track ✓</text>
+
+  <!-- ── BOTTOM BAR ── -->
+  <rect x="0" y="319" width="600" height="61" fill="#0D0D0D"/>
+  <line x1="0" y1="319" x2="600" y2="319" stroke="#E8621A" stroke-width="1" opacity="0.2"/>
+
+  <!-- Encryption badge -->
+  <rect x="16" y="330" width="120" height="18" rx="3" fill="#E8621A" opacity="0.08"/>
+  <rect x="16" y="330" width="120" height="18" rx="3" fill="none" stroke="#E8621A" stroke-width="0.5" opacity="0.25"/>
+  <text x="76" y="342" font-family="Arial, sans-serif" font-size="7" fill="#E8621A" text-anchor="middle" letter-spacing="1">AES-256 ENCRYPTED</text>
+
+  <!-- Local-first badge -->
+  <rect x="145" y="330" width="100" height="18" rx="3" fill="#4CAF7D" opacity="0.06"/>
+  <rect x="145" y="330" width="100" height="18" rx="3" fill="none" stroke="#4CAF7D" stroke-width="0.5" opacity="0.2"/>
+  <text x="195" y="342" font-family="Arial, sans-serif" font-size="7" fill="#4CAF7D" text-anchor="middle" letter-spacing="1">LOCAL-FIRST</text>
+
+  <!-- Made in India -->
+  <rect x="254" y="330" width="95" height="18" rx="3" fill="#4A9FD4" opacity="0.06"/>
+  <rect x="254" y="330" width="95" height="18" rx="3" fill="none" stroke="#4A9FD4" stroke-width="0.5" opacity="0.2"/>
+  <text x="301" y="342" font-family="Arial, sans-serif" font-size="7" fill="#4A9FD4" text-anchor="middle" letter-spacing="1">MADE IN INDIA</text>
+
+  <!-- Bottom tagline -->
+  <text x="300" y="368" font-family="Arial, sans-serif" font-size="7.5" fill="#555555" text-anchor="middle" letter-spacing="3">YOUR DATA · YOUR DEVICE · YOUR CONTROL</text>
+
+  <!-- Thin orange border frame -->
+  <rect x="0" y="0" width="600" height="380" fill="none" stroke="#E8621A" stroke-width="1" opacity="0.15"/>
+</svg>
