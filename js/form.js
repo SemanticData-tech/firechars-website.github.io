@@ -35,7 +35,7 @@ function openGmailEnquiry(e) {
   err.style.display = 'none';
 
   // ── Build Gmail URL ──────────────────────────────────────────
-  const to      = 'connect.datasemantic@gmail.com';
+  const to      = 'official.firechars@gmail.com';
   const subject = `Project Enquiry — ${type} | ${fname} ${lname}`;
   const body    =
 `Dear FireChars Team,
