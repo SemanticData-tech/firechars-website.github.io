@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — FireChars</title>
+  <meta name="description" content="Privacy Policy for FireChars products including Billing Manager app. Learn how we collect, use and protect your data.">
+  <meta name="author" content="FireChars.in">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://firechars.in/privacy-policy.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://firechars.in/privacy-policy.html">
+  <meta property="og:title"       content="Privacy Policy — FireChars">
+  <meta property="og:description" content="Privacy Policy for FireChars products including Billing Manager app.">
+  <meta property="og:locale"      content="en_IN">
+  <meta property="og:site_name"   content="FireChars.in">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* ── Privacy Policy Page Styles ─────────────────────── */
+    .pp-hero {
+      min-height: 32vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 6rem 6vw 3rem;
+      position: relative;
+      background: linear-gradient(180deg, #0d0d0d 0%, var(--deep-black) 100%);
+      border-bottom: 1px solid rgba(232, 98, 26, 0.12);
+      overflow: hidden;
+    }
+
+    .pp-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(232,98,26,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pp-hero-inner {
+      max-width: 860px;
+    }
+
+    .pp-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pp-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px; height: 1px;
+      background: var(--fire-orange);
+    }
+
+    .pp-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: 3px;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .pp-title span { color: var(--fire-orange); }
+
+    .pp-meta {
+      font-size: 0.85rem;
+      color: var(--ash);
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* ── Content ─────────────────────────────────────────── */
+    .pp-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 6vw 7rem;
+    }
+
+    .pp-intro {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--ash);
+      margin-bottom: 3.5rem;
+      padding: 2rem 2.5rem;
+      border-left: 3px solid var(--fire-orange);
+      background: rgba(232, 98, 26, 0.04);
+    }
+
+    .pp-section {
+      margin-bottom: 3rem;
+    }
+
+    .pp-section-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--fire-orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .pp-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pp-section p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--ash);
+      margin-bottom: 1rem;
+    }
+
+    .pp-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .pp-section ul li {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--ash);
+      padding: 0.4rem 0 0.4rem 1.4rem;
+      position: relative;
+    }
+
+    .pp-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--fire-orange);
+      font-weight: 700;
+    }
+
+    .pp-section strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .pp-highlight {
+      background: rgba(232, 98, 26, 0.06);
+      border: 1px solid rgba(232, 98, 26, 0.15);
+      padding: 1.5rem 2rem;
+      margin: 1.2rem 0;
+    }
+
+    .pp-highlight p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .pp-contact-box {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      border: 1px solid rgba(232, 98, 26, 0.2);
+      background: rgba(232, 98, 26, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pp-contact-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--fire-orange);
+    }
+
+    .pp-contact-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .pp-contact-box p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .pp-contact-box a {
+      color: var(--fire-orange);
+      text-decoration: none;
+    }
+
+    .pp-contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    .pp-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--fire-orange), transparent);
+      margin: 2.5rem 0;
+    }
+
+    /* ── Nav override for inner page ────────────────────── */
+    #navbar a.nav-logo { pointer-events: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <svg class="nav-logo-icon" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 8 C50 8 78 30 78 58 C78 78 66 95 50 100 C34 95 22 78 22 58 C22 30 50 8 50 8Z" fill="url(#nFO)" opacity="0.9"/>
+        <path d="M50 28 C50 28 68 45 68 62 C68 76 60 88 50 92 C40 88 32 76 32 62 C32 45 50 28 50 28Z" fill="url(#nFI)" opacity="0.7"/>
+        <text x="32" y="74" font-family="Arial Black" font-size="28" font-weight="900" fill="white" opacity="0.95">FC</text>
+        <defs>
+          <linearGradient id="nFO" x1="50" y1="8" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#C8860A"/>
+            <stop offset="50%"  stop-color="#E8621A"/>
+            <stop offset="100%" stop-color="#8B4513"/>
+          </linearGradient>
+          <linearGradient id="nFI" x1="50" y1="28" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F0A040"/>
+            <stop offset="100%" stop-color="#E8621A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-text"><span>FIRE</span>CHARS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li class="nav-dropdown-wrap">
+        <a href="products.html">Products</a>
+        <ul class="nav-dropdown">
+          <li><a href="products.html#pfos-product"><span class="nav-dropdown-num">00</span>Finance OS</a></li>
+          <li><a href="products.html#attendease-product"><span class="nav-dropdown-num">01</span>AttendEase</a></li>
+          <li><a href="products.html#billing-product"><span class="nav-dropdown-num">02</span>Billing Manager</a></li>
+          <li><a href="products.html#reportcard-product"><span class="nav-dropdown-num">03</span>Report Card</a></li>
+          <li><a href="products.html#attendance-product"><span class="nav-dropdown-num">04</span>Student Attendance</a></li>
+        </ul>
+      </li>
+      <li><a href="clients.html">Our Work</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <div class="pp-hero">
+    <div class="pp-hero-inner">
+      <div class="pp-eyebrow">Legal · firechars.in</div>
+      <h1 class="pp-title">Privacy <span>Policy</span></h1>
+      <p class="pp-meta">Effective Date: April 7, 2026 &nbsp;·&nbsp; Last Updated: April 7, 2026 &nbsp;·&nbsp; Applies to: All FireChars Products</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       BODY
+       ═══════════════════════════════════════ -->
+  <div class="pp-body">
+
+    <div class="pp-intro">
+      This Privacy Policy describes how <strong>FireChars</strong> ("we," "us," or "our") collects, uses, and protects
+      the personal information you provide when using our products and services — including the
+      <strong>Billing Manager</strong> Android app (<code>com.firechars.billingmanager</code>), the
+      <strong>Personal Finance OS</strong>, and the <strong>firechars.in</strong> website.
+      By using any FireChars product, you agree to the terms outlined in this policy.
+    </div>
+
+    <!-- 1 -->
+    <div class="pp-section">
+      <div class="pp-section-num">01</div>
+      <h2>Information We Collect</h2>
+
+      <p><strong>Personal Information</strong></p>
+      <ul>
+        <li>We may collect personal information such as your name, email address, and phone number when you voluntarily submit it — for example, via our contact form or product enquiry.</li>
+        <li>For the <strong>Billing Manager</strong> app, any customer names, business details, or invoice data you enter is stored <strong>locally on your device only</strong> and is never transmitted to our servers.</li>
+      </ul>
+
+      <p><strong>Automatically Collected Information</strong></p>
+      <ul>
+        <li>We may automatically collect certain information about your visit to firechars.in such as browser type, operating system, and browsing behavior for statistical and improvement purposes.</li>
+        <li>The Billing Manager app does <strong>not</strong> collect any analytics, crash reports, or device identifiers automatically.</li>
+      </ul>
+
+      <p><strong>Cookies</strong></p>
+      <ul>
+        <li>Our website may use cookies to enhance your browsing experience. You can disable cookies in your browser settings, though certain features may not function properly.</li>
+        <li>Mobile apps published by FireChars do not use cookies.</li>
+      </ul>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 2 -->
+    <div class="pp-section">
+      <div class="pp-section-num">02</div>
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>To respond to your enquiries and contact form submissions.</li>
+        <li>To provide product updates, newsletters, or announcements if you opt in.</li>
+        <li>To improve our website content, app functionality, and user experience.</li>
+        <li>Automatically collected information is used solely for analytics and performance improvement — never sold to third parties.</li>
+      </ul>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 3 -->
+    <div class="pp-section">
+      <div class="pp-section-num">03</div>
+      <h2>Billing Manager App — Data Practices</h2>
+
+      <div class="pp-highlight">
+        <p>The Billing Manager app is designed as a <strong>local-first, offline-first</strong> tool.
+        All invoice data, customer records, and business information you enter remains on your device.
+        We do not collect, transmit, or store any app data on remote servers.</p>
+      </div>
+
+      <ul>
+        <li><strong>Storage permissions</strong> — used only to save and share PDF invoices from your device.</li>
+        <li><strong>No internet permission</strong> — the core app functionality works fully offline.</li>
+        <li><strong>No account required</strong> — no login, no profile, no cloud sync.</li>
+        <li><strong>No advertising SDKs</strong> — the app contains zero ads and zero ad tracking.</li>
+        <li><strong>No analytics SDKs</strong> — we do not embed Firebase, Crashlytics, or similar tools.</li>
+      </ul>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 4 -->
+    <div class="pp-section">
+      <div class="pp-section-num">04</div>
+      <h2>Third-Party Services</h2>
+      <ul>
+        <li>Our website may use <strong>Google Analytics</strong> to collect anonymous usage statistics. Google Analytics has its own privacy policy available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--fire-orange);">policies.google.com/privacy</a>.</li>
+        <li>Our contact form is protected by <strong>reCAPTCHA</strong> (Google). By submitting the form, you agree to Google's Privacy Policy and Terms of Service.</li>
+        <li>The Billing Manager app does not integrate with any third-party services.</li>
+      </ul>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 5 -->
+    <div class="pp-section">
+      <div class="pp-section-num">05</div>
+      <h2>Data Security</h2>
+      <p>We implement reasonable security measures to protect any personal information from unauthorized access, disclosure, alteration, or destruction. For local app data, security is governed by your device's own security model (screen lock, encryption at rest).</p>
+      <p>We recommend keeping your device software up to date and using a screen lock to protect your billing data.</p>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 6 -->
+    <div class="pp-section">
+      <div class="pp-section-num">06</div>
+      <h2>Your Rights & Choices</h2>
+      <ul>
+        <li><strong>Opt-out</strong> — You can unsubscribe from any communications from us at any time.</li>
+        <li><strong>Access & Correction</strong> — You may request access to or correction of your personal information we hold.</li>
+        <li><strong>Deletion</strong> — You may request deletion of your personal information by contacting us.</li>
+        <li><strong>App data</strong> — Since Billing Manager stores data locally on your device, you can delete all app data at any time via Android Settings → Apps → Billing Manager → Clear Data.</li>
+      </ul>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 7 -->
+    <div class="pp-section">
+      <div class="pp-section-num">07</div>
+      <h2>Children's Privacy</h2>
+      <p>Our products are not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us and we will promptly delete it.</p>
+    </div>
+
+    <div class="pp-divider"></div>
+
+    <!-- 8 -->
+    <div class="pp-section">
+      <div class="pp-section-num">08</div>
+      <h2>Changes to This Policy</h2>
+      <p>We reserve the right to modify this Privacy Policy at any time. Changes will be effective upon posting to this page. Your continued use of our products after changes are posted constitutes your acceptance of those changes. We will update the "Last Updated" date at the top of this page.</p>
+    </div>
+
+    <!-- Contact Box -->
+    <div class="pp-contact-box">
+      <h3>Contact Us</h3>
+      <p>For any questions, concerns, or requests regarding this Privacy Policy or your personal data, please reach out:</p>
+      <p><strong style="color:var(--white);">FireChars</strong></p>
+      <p>Email: <a href="mailto:connect.datasemantic@gmail.com">connect.datasemantic@gmail.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/919011873168" target="_blank">+91 90118 73168</a></p>
+      <p>Website: <a href="https://firechars.in" target="_blank">firechars.in</a></p>
+      <p style="margin-top:1rem; font-size:0.82rem;">Kolhapur, Maharashtra, India</p>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand"><span>FIRE</span>CHARS</div>
+    <div class="footer-copy">
+      &copy; <span id="yr"></span> FireChars.in &nbsp;·&nbsp;
+      <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      Rebranded from <a href="https://semanticdata.online" target="_blank">SemanticData.Online</a>
+    </div>
+    <div class="footer-tagline">CHARACTERS THAT POWER INNOVATION</div>
+  </footer>
+
+  <!-- WHATSAPP FAB -->
+  <div class="whatsapp-fab">
+    <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20would%20like%20to%20discuss%20your%20services."
+       target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════ -->
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+
+</body>
+</html>
