@@ -71,6 +71,7 @@
           <li><a href="products.html#billing-product"><span class="nav-dropdown-num">02</span>Billing Manager</a></li>
           <li><a href="products.html#reportcard-product"><span class="nav-dropdown-num">03</span>Report Card</a></li>
           <li><a href="products.html#attendance-product"><span class="nav-dropdown-num">04</span>Student Attendance</a></li>
+          <li><a href="products.html#viset-product"><span class="nav-dropdown-num">05</span>VISET : Nifty50 Dividend Scan</a></li>
         </ul>
       </li>
       <li><a href="clients.html">Our Work</a></li>
@@ -111,7 +112,7 @@
   <section class="products-section">
 
     <div class="products-count-bar reveal">
-      <div class="products-count">Showing <span id="visibleCount">5</span> of <span>5</span> products</div>
+      <div class="products-count">Showing <span id="visibleCount">6</span> of <span>6</span> products</div>
       <div style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(136,136,136,0.5);">
         All Products · Ready to Deploy
       </div>
@@ -287,6 +288,49 @@
         <div class="product-num">04</div>
       </div>
 
+
+      <!-- ── PRODUCT 5: VISET · Nifty50 Dividend Scan ──── -->
+      <div id="viset-product" class="product-card reveal reveal-delay-1" data-tags="web finance">
+        <div class="product-badge web">Web Tool</div>
+
+        <div class="product-screenshot" style="background:#0D1117;display:flex;align-items:center;justify-content:center;min-height:220px;">
+          <div style="text-align:center;padding:2rem;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:4px;color:#00C896;line-height:1;">VISET</div>
+            <div style="font-family:'Rajdhani',sans-serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:0.4rem;">Nifty 50 · Dividend Tracker</div>
+            <div style="display:flex;gap:8px;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;">
+              <div style="background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.3);border-radius:6px;padding:6px 14px;font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:2px;color:#00C896;">YIELD SCORE</div>
+              <div style="background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.3);border-radius:6px;padding:6px 14px;font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:2px;color:#0EA5E9;">CONSISTENCY</div>
+              <div style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:6px 14px;font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:2px;color:#F59E0B;">NIFTY RANK</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="product-platform">Web · Fully Static · No Login Required</div>
+          <div class="product-name">VISET : Nifty50 Dividend Scan</div>
+          <div class="product-tagline">Dividend Intelligence for Nifty 50</div>
+          <p class="product-desc">
+            Upload the NSE Nifty 50 CSV and instantly score every dividend-paying stock by yield, 5-year consistency, and index weight rank. Tracks changes run-over-run, flags data anomalies, and lets you share results via Gmail or Google Drive — all in the browser with zero server needed.
+          </p>
+          <div class="product-features">
+            <span class="product-feature">Composite Scoring (3 factors)</span>
+            <span class="product-feature">Yield + Consistency + Nifty Rank</span>
+            <span class="product-feature">Safe Zone — Rank 1–40 Only</span>
+            <span class="product-feature">Change Tracking (run vs run)</span>
+            <span class="product-feature">LTP · Ex-Date · 5Y History</span>
+            <span class="product-feature">Gmail Compose (1-click)</span>
+            <span class="product-feature">Google Drive Save</span>
+            <span class="product-feature">CSV Export</span>
+            <span class="product-feature">No Server · No API Key</span>
+          </div>
+          <div class="product-actions">
+            <a href="niftyscan.html" class="btn-demo" target="_blank">Launch Tool →</a>
+            <a href="index.html#contact" class="btn-enquire">Get Custom Version</a>
+          </div>
+        </div>
+        <div class="product-num">05</div>
+      </div>
+
     </div><!-- /products-grid -->
 
     <!-- No results message -->
@@ -388,7 +432,6 @@
       const grid = document.getElementById('productsGrid');
       grid.style.background = visible === 0 ? 'transparent' : 'rgba(232,98,26,0.08)';
     }
-  </script>
 
 </body>
 </html>

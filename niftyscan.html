@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nifty 50 · Dividend Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:       #0D1117;
+    --surface:  #161B22;
+    --border:   #21262D;
+    --accent:   #00C896;
+    --accent2:  #0EA5E9;
+    --warn:     #F59E0B;
+    --danger:   #EF4444;
+    --text:     #E6EDF3;
+    --muted:    #7D8590;
+    --mono:     'IBM Plex Mono', monospace;
+    --sans:     'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Header ── */
+  header {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    flex-shrink: 0;
+  }
+  header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  header span {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+    margin-left: auto;
+  }
+
+  /* ── Main container ── */
+  main {
+    width: 100%;
+    max-width: 1280px;
+    padding: 48px 40px 80px;
+  }
+
+  /* ── Step cards ── */
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .step.active { border-color: var(--accent); }
+  .step.done   { border-color: var(--border); opacity: 0.6; }
+  .step.hidden { display: none; }
+
+  .step-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .step h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .step p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* ── Upload zone ── */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 40px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: rgba(0,200,150,0.04); }
+  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .upload-icon { font-size: 32px; margin-bottom: 12px; }
+  .upload-zone h3 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .upload-zone small { font-size: 12px; color: var(--muted); }
+  .file-chosen {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    display: none;
+  }
+
+  /* ── Past ranking prompt ── */
+  .past-rank-box {
+    background: rgba(14,165,233,0.07);
+    border: 1px solid rgba(14,165,233,0.25);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .past-rank-box p {
+    margin-bottom: 14px;
+    color: var(--text);
+    font-size: 13px;
+  }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ── Buttons ── */
+  .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary   { background: var(--accent);  color: #000; }
+  .btn-primary:hover { background: #00e6ac; }
+  .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-blue      { background: var(--accent2); color: #fff; }
+  .btn-blue:hover { background: #38bdf8; }
+  .btn:disabled  { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Input fields ── */
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-family: var(--mono); }
+  .field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field input:focus { border-color: var(--accent); }
+  .field input::placeholder { color: var(--muted); }
+
+  /* ── Progress ── */
+  #progress-section { display: none; }
+  .progress-wrap {
+    background: var(--bg);
+    border-radius: 8px;
+    height: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.3s;
+    border-radius: 8px;
+  }
+  .log-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    height: 140px;
+    overflow-y: auto;
+    line-height: 1.8;
+  }
+  .log-box .ok   { color: var(--accent); }
+  .log-box .info { color: var(--accent2); }
+  .log-box .warn { color: var(--warn); }
+  .log-box .err  { color: var(--danger); }
+
+  /* ── Results table ── */
+  #results-section { display: none; }
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .results-header h2 { font-size: 18px; font-weight: 600; }
+  .stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+  .stat-chip .val { font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--accent); }
+  .stat-chip .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th {
+    background: var(--surface);
+    padding: 14px 18px;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+  tbody td { padding: 13px 18px; white-space: nowrap; }
+  .sym { font-family: var(--mono); font-weight: 600; font-size: 14px; }
+  .ltp-val { font-family: var(--mono); font-weight: 600; font-size: 14px; color: var(--text); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: var(--mono);
+  }
+  .badge-green  { background: rgba(0,200,150,0.15); color: var(--accent); }
+  .badge-red    { background: rgba(239,68,68,0.15);  color: var(--danger); }
+  .badge-yellow { background: rgba(245,158,11,0.15); color: var(--warn); }
+  .score-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .score-bar { height: 6px; border-radius: 3px; background: var(--accent); min-width: 4px; }
+
+  /* ── Action section ── */
+  .action-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 20px;
+  }
+  .action-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .action-card > p { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 700px) { .action-grid { grid-template-columns: 1fr; } }
+
+  .action-tile {
+    border-radius: 12px; border: 1px solid var(--border);
+    background: transparent; padding: 20px 20px 18px;
+    cursor: pointer; text-align: left;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    font-family: var(--sans); color: var(--text);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .action-tile:hover { transform: translateY(-2px); }
+  .tile-gmail  { border-color: rgba(234,67,53,0.35); }
+  .tile-gmail:hover  { border-color: #EA4335; background: rgba(234,67,53,0.06); }
+  .tile-drive  { border-color: rgba(66,133,244,0.35); }
+  .tile-drive:hover  { border-color: #4285F4; background: rgba(66,133,244,0.06); }
+  .tile-local  { border-color: rgba(0,200,150,0.35); }
+  .tile-local:hover  { border-color: var(--accent); background: rgba(0,200,150,0.06); }
+  .tile-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .tile-gmail .tile-icon  { background: rgba(234,67,53,0.12); }
+  .tile-drive .tile-icon  { background: rgba(66,133,244,0.12); }
+  .tile-local .tile-icon  { background: rgba(0,200,150,0.12); }
+  .tile-title { font-size: 14px; font-weight: 600; }
+  .tile-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .tile-badge {
+    display: inline-block; font-size: 10px; font-family: var(--mono);
+    padding: 2px 7px; border-radius: 20px; margin-top: 2px;
+  }
+  .tile-gmail .tile-badge { background: rgba(234,67,53,0.15); color: #EA4335; }
+  .tile-drive .tile-badge { background: rgba(66,133,244,0.15); color: #4285F4; }
+  .tile-local .tile-badge { background: rgba(0,200,150,0.15); color: var(--accent); }
+  .tile-input-row {
+    display: none; margin-top: 4px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; flex-direction: row; align-items: center;
+  }
+  .tile-input-row.visible { display: flex; }
+  .tile-input-row input {
+    flex: 1; background: transparent; border: none; outline: none;
+    padding: 9px 12px; color: var(--text); font-size: 13px; font-family: var(--sans);
+  }
+  .tile-input-row input::placeholder { color: var(--muted); }
+  .tile-input-row button {
+    background: #EA4335; color: #fff; border: none;
+    padding: 9px 14px; font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: var(--sans); white-space: nowrap;
+  }
+  .tile-input-row button:hover { background: #c5372c; }
+  .tile-input-row.drive-row button { background: #4285F4; }
+  .tile-input-row.drive-row button:hover { background: #2a6dd9; }
+
+  /* ── Toast ── */
+  #toast {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 12px 24px; border-radius: 10px;
+    font-size: 13px; color: var(--text);
+    transition: transform 0.3s; z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  .change-up   { color: var(--accent); }
+  .change-down { color: var(--danger); }
+  .change-new  { color: var(--accent2); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">N₅₀</div>
+  <h1>Nifty 50 · Dividend Tracker</h1>
+  <span id="run-date"></span>
+</header>
+
+<main>
+
+  <!-- STEP 1: Upload CSV -->
+  <div class="step active" id="step-upload">
+    <div class="step-label">Step 01 — Data Source</div>
+    <h2>Upload NSE CSV</h2>
+    <p>Download from <a href="https://www.nseindia.com/index-tracker/NIFTY%2050" target="_blank" style="color:var(--accent2)">nseindia.com → NIFTY 50 tracker</a> and upload here.</p>
+
+    <div class="upload-zone" id="upload-zone">
+      <input type="file" id="csv-input" accept=".csv">
+      <div class="upload-icon">📂</div>
+      <h3>Drop CSV here or click to browse</h3>
+      <small>Only the Nifty 50 index tracker CSV from NSE</small>
+    </div>
+    <div class="file-chosen" id="file-chosen">✓ <span id="file-name-display"></span></div>
+
+    <!-- Past ranking prompt — shows after file chosen -->
+    <div class="past-rank-box" id="past-rank-box" style="display:none">
+      <p>📊 Do you have a previous ranking file to compare changes?</p>
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="btn-upload-past">
+          📎 Upload past ranking (CSV/Excel)
+        </button>
+        <input type="file" id="past-input" accept=".csv,.xlsx" style="display:none">
+        <button class="btn btn-secondary" id="btn-skip-past">
+          ↩ Fresh run — skip comparison
+        </button>
+      </div>
+      <div class="file-chosen" id="past-chosen" style="margin-top:10px">✓ Past file: <span id="past-name-display"></span></div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Gmail -->
+  <div class="step hidden" id="step-email">
+    <div class="step-label">Step 02 — Your Details</div>
+    <h2>Email address</h2>
+    <p>Used to send you the results. Not stored anywhere — only used for this session.</p>
+    <div class="field">
+      <label>Gmail / Email ID</label>
+      <input type="email" id="email-input" placeholder="you@gmail.com">
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btn-start-scan">
+        ▶ Start Scan
+      </button>
+      <button class="btn btn-secondary" id="btn-skip-email">
+        Skip email — scan only
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Progress -->
+  <div class="step hidden" id="step-progress">
+    <div class="step-label">Step 03 — Scanning</div>
+    <h2>Fetching dividend data…</h2>
+    <p id="progress-label">Connecting to Yahoo Finance for 50 stocks…</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+    <div class="log-box" id="log-box"></div>
+  </div>
+
+  <!-- STEP 4: Results -->
+  <div id="results-section">
+    <hr class="divider">
+    <div class="results-header">
+      <h2>📊 Results</h2>
+      <button class="btn btn-secondary" id="btn-download-csv" style="font-size:12px">⬇ Download CSV</button>
+    </div>
+
+    <div class="stats-row" id="stats-row"></div>
+
+    <!-- Change analysis banner (shown if past file uploaded) -->
+    <div id="change-banner" style="display:none; background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); border-radius:10px; padding:16px 20px; margin-bottom:16px; font-size:13px; line-height:1.8;"></div>
+
+    <div class="table-wrap">
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Symbol</th>
+            <th>Nifty Rank</th>
+            <th>LTP ₹</th>
+            <th>Yield %</th>
+            <th>Rate ₹</th>
+            <th>Last Div ₹</th>
+            <th>Ex-Date</th>
+            <th>5Y Consty</th>
+            <th>Score</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Action section -->
+    <div class="action-card" id="action-section">
+      <h3>Save or share your results</h3>
+      <p>All three options work directly in your browser — no server required.</p>
+      <div class="action-grid">
+
+        <!-- Gmail tile -->
+        <div class="action-tile tile-gmail" id="tile-gmail" onclick="toggleGmailInput()">
+          <div class="tile-icon">✉️</div>
+          <div>
+            <div class="tile-title">Open in Gmail</div>
+            <div class="tile-desc">Opens Gmail compose with top 10 results in the body + CSV attached.</div>
+            <span class="tile-badge">No setup needed</span>
+          </div>
+          <div class="tile-input-row" id="gmail-input-row" onclick="event.stopPropagation()">
+            <input type="email" id="gmail-to" placeholder="recipient@gmail.com">
+            <button onclick="sendViaGmail()">Open Gmail →</button>
+          </div>
+        </div>
+
+        <!-- Google Drive tile -->
+        <div class="action-tile tile-drive" id="tile-drive" onclick="saveToGoogleDrive()">
+          <div class="tile-icon">📁</div>
+          <div>
+            <div class="tile-title">Save to Google Drive</div>
+            <div class="tile-desc">Signs you in with Google and saves the CSV directly to your Drive.</div>
+            <span class="tile-badge">One-time Google sign-in</span>
+          </div>
+          <div id="drive-status" style="font-size:12px;color:var(--muted);display:none"></div>
+        </div>
+
+        <!-- Local download tile -->
+        <div class="action-tile tile-local" onclick="downloadCSV(scanResults)">
+          <div class="tile-icon">💾</div>
+          <div>
+            <div class="tile-title">Download CSV</div>
+            <div class="tile-desc">Save results as a CSV file on your computer for Excel or future comparison runs.</div>
+            <span class="tile-badge">Instant download</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div id="toast"></div>
+
+<script>
+// ─── State ───────────────────────────────────────────────────────────────────
+let csvFile = null;
+let pastFile = null;
+let userEmail = '';
+let scanResults = [];
+let pastData = {};
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+document.getElementById('run-date').textContent = new Date().toLocaleDateString('en-IN', {
+  day:'2-digit', month:'short', year:'numeric'
+});
+
+// ─── File Upload ──────────────────────────────────────────────────────────────
+const csvInput = document.getElementById('csv-input');
+const uploadZone = document.getElementById('upload-zone');
+
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadZone.classList.remove('drag');
+  if (e.dataTransfer.files[0]) handleCSV(e.dataTransfer.files[0]);
+});
+
+csvInput.addEventListener('change', () => {
+  if (csvInput.files[0]) handleCSV(csvInput.files[0]);
+});
+
+function handleCSV(file) {
+  csvFile = file;
+  document.getElementById('file-name-display').textContent = file.name;
+  document.getElementById('file-chosen').style.display = 'block';
+  document.getElementById('past-rank-box').style.display = 'block';
+  uploadZone.classList.add('active');
+}
+
+// Past file
+document.getElementById('btn-upload-past').addEventListener('click', () => {
+  document.getElementById('past-input').click();
+});
+document.getElementById('past-input').addEventListener('change', function() {
+  if (this.files[0]) {
+    pastFile = this.files[0];
+    document.getElementById('past-name-display').textContent = this.files[0].name;
+    document.getElementById('past-chosen').style.display = 'block';
+    proceedToEmailStep();
+  }
+});
+document.getElementById('btn-skip-past').addEventListener('click', () => {
+  pastFile = null;
+  proceedToEmailStep();
+});
+
+function proceedToEmailStep() {
+  document.getElementById('step-upload').classList.add('done');
+  document.getElementById('step-email').classList.remove('hidden');
+  document.getElementById('step-email').classList.add('active');
+  document.getElementById('step-email').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── Email Step ───────────────────────────────────────────────────────────────
+document.getElementById('btn-start-scan').addEventListener('click', () => {
+  const email = document.getElementById('email-input').value.trim();
+  if (email && !email.includes('@')) { showToast('Enter a valid email address'); return; }
+  userEmail = email;
+  startScan();
+});
+document.getElementById('btn-skip-email').addEventListener('click', () => {
+  userEmail = '';
+  startScan();
+});
+
+// ─── Parse CSV ────────────────────────────────────────────────────────────────
+function parseNSECsv(text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  let headerIdx = -1;
+  let symbolCol = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const cols = lines[i].split(',').map(c => c.trim().toUpperCase().replace(/"/g,''));
+    const si = cols.findIndex(c => c === 'SYMBOL' || c === 'TICKER' || c === 'COMPANY SYMBOL');
+    if (si >= 0) { headerIdx = i; symbolCol = si; break; }
+  }
+  if (headerIdx < 0) {
+    // Try first row
+    headerIdx = 0;
+    const cols = lines[0].split(',').map(c => c.trim().toUpperCase().replace(/"/g,''));
+    symbolCol = cols.findIndex(c => c.includes('SYMBOL') || c.includes('TICKER'));
+    if (symbolCol < 0) symbolCol = 0;
+  }
+  const symbols = [];
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const cols = lines[i].split(',').map(c => c.trim().replace(/"/g,''));
+    const sym = cols[symbolCol];
+    if (sym && sym.length > 1 && sym.length < 20 && /^[A-Z&-]+$/.test(sym)) {
+      symbols.push(sym);
+    }
+  }
+  return symbols;
+}
+
+function parsePastData(text) {
+  // Try to read symbol + composite score from previous output CSV
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const data = {};
+  if (lines.length < 2) return data;
+  const headers = lines[0].split(',').map(c => c.trim().toUpperCase().replace(/"/g,''));
+  const symIdx   = headers.findIndex(h => h.includes('SYMBOL'));
+  const rankIdx  = headers.findIndex(h => h.includes('NIFTY') && h.includes('RANK'));
+  const scoreIdx = headers.findIndex(h => h.includes('COMPOSITE') || h.includes('SCORE'));
+  if (symIdx < 0) return data;
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].split(',').map(c => c.trim().replace(/"/g,''));
+    const sym = cols[symIdx];
+    if (sym) {
+      data[sym] = {
+        niftyRank:      rankIdx  >= 0 ? parseFloat(cols[rankIdx])  || 99 : 99,
+        compositeScore: scoreIdx >= 0 ? parseFloat(cols[scoreIdx]) || 0  : 0,
+      };
+    }
+  }
+  return data;
+}
+
+// ─── Data fetch: NSE direct → Yahoo cache-busted → multi-proxy fallback ───────
+//
+// Tier 1: NSE official API  — real-time, only works on live domain
+// Tier 2: Yahoo Finance direct — cache-busted, works in Chrome on live domain
+// Tier 3: Multi-proxy chain — tried in order until one works
+
+let _nseSessionPrimed = false;
+let _yahooMethod = 'direct';
+
+// Proxy list — tried in order, first success wins
+const PROXIES = [
+  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+];
+let _proxyIndex = 0;
+
+async function fetchViaProxy(url) {
+  // Try proxies in order, move to next on failure
+  for (let i = _proxyIndex; i < PROXIES.length; i++) {
+    try {
+      const proxyUrl = PROXIES[i](url);
+      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const wrapper = await res.json();
+      // allorigins wraps in {contents}, codetabs returns raw
+      const text = wrapper.contents ?? (typeof wrapper === 'string' ? wrapper : JSON.stringify(wrapper));
+      const json = JSON.parse(text);
+      _proxyIndex = i; // stick with this proxy for remaining stocks
+      return json;
+    } catch (e) {
+      if (i === _proxyIndex && i < PROXIES.length - 1) {
+        logLine('warn', `Proxy ${i+1} failed — trying next proxy…`);
+        _proxyIndex = i + 1;
+      }
+    }
+  }
+  throw new Error('All proxies failed');
+}
+
+// ── Tier 1: NSE live price (real domain only) ─────────────────────────────────
+async function fetchNSEQuote(symbol) {
+  const url = `https://www.nseindia.com/api/quote-equity?symbol=${encodeURIComponent(symbol)}`;
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(6000),
+    headers: { 'Accept': 'application/json', 'Referer': 'https://www.nseindia.com/' },
+    credentials: 'include',
+  });
+  if (!res.ok) throw new Error(`NSE HTTP ${res.status}`);
+  const json = await res.json();
+  const ltp = json?.priceInfo?.lastPrice || json?.priceInfo?.close || 0;
+  if (!ltp) throw new Error('NSE returned no price');
+  return ltp;
+}
+
+async function primeNSESession() {
+  if (_nseSessionPrimed) return;
+  try {
+    await fetch('https://www.nseindia.com/', {
+      signal: AbortSignal.timeout(6000),
+      credentials: 'include',
+      headers: { 'Accept': 'text/html' },
+    });
+    _nseSessionPrimed = true;
+    logLine('ok', '✓ NSE session primed — using live exchange prices');
+  } catch (_) {
+    logLine('warn', 'NSE session failed — LTP from Yahoo Finance');
+  }
+}
+
+// ── Tier 2 + 3: Yahoo Finance (dividend data + LTP fallback) ─────────────────
+async function yahooFetch(symbol) {
+  const ticker = symbol + '.NS';
+  const ts = Date.now();
+  const quoteUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=summaryDetail,price&_=${ts}`;
+
+  // Tier 2: direct Yahoo
+  if (_yahooMethod === 'direct') {
+    try {
+      const res = await fetch(quoteUrl, {
+        signal: AbortSignal.timeout(5000),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) return parseYahooQuote(await res.json());
+    } catch (_) {
+      _yahooMethod = 'proxy';
+      logLine('info', 'Yahoo direct blocked — switching to proxy');
+    }
+  }
+
+  // Tier 3: proxy chain
+  const json = await fetchViaProxy(quoteUrl);
+  return parseYahooQuote(json);
+}
+
+function parseYahooQuote(json) {
+  const sd = json?.quoteSummary?.result?.[0]?.summaryDetail || {};
+  const pr = json?.quoteSummary?.result?.[0]?.price || {};
+  const divRate  = sd.dividendRate?.raw  || 0;
+  const divYield = (sd.dividendYield?.raw || 0) * 100;
+  const ltp      = pr.regularMarketPrice?.raw || pr.regularMarketPreviousClose?.raw || 0;
+  const exDateTs = sd.exDividendDate?.raw;
+  const exDate   = exDateTs ? new Date(exDateTs * 1000).toISOString().slice(0, 10) : 'N/A';
+  const lastDiv  = sd.lastDividendValue?.raw || 0;
+  const pays     = divRate > 0 || divYield > 0;
+  const flag     = divYield > 15 ? '⚠️ Verify' : pays ? '✅' : '❌ No Div';
+  return { divRate, divYield, ltp, exDate, lastDiv, pays, flag };
+}
+
+// ── Dividend history (cache-busted, proxy fallback) ───────────────────────────
+async function fetchYahooHistory(symbol) {
+  const ticker = symbol + '.NS';
+  const ts = Date.now();
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?events=dividends&range=5y&interval=3mo&_=${ts}`;
+
+  let json;
+  if (_yahooMethod === 'direct') {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+      if (res.ok) json = await res.json();
+    } catch (_) {}
+  }
+
+  if (!json) {
+    try { json = await fetchViaProxy(url); } catch (_) { return 0; }
+  }
+
+  const divEvents = json?.chart?.result?.[0]?.events?.dividends;
+  if (!divEvents) return 0;
+  const currentYear = new Date().getFullYear();
+  const paidYears = new Set(Object.values(divEvents).map(d => new Date(d.date * 1000).getFullYear()));
+  return [0,1,2,3,4].filter(i => paidYears.has(currentYear - 1 - i)).length;
+}
+
+// ─── Scan ─────────────────────────────────────────────────────────────────────
+async function startScan() {
+  if (!csvFile) { showToast('Please upload the NSE CSV first'); return; }
+
+  document.getElementById('step-email').classList.add('done');
+  document.getElementById('step-progress').classList.remove('hidden');
+  document.getElementById('step-progress').classList.add('active');
+  document.getElementById('step-progress').scrollIntoView({ behavior: 'smooth' });
+
+  const text = await readFileAsText(csvFile);
+  const symbols = parseNSECsv(text);
+
+  if (symbols.length === 0) {
+    logLine('err', '✗ Could not parse symbols from CSV. Check format.');
+    return;
+  }
+  logLine('ok', `✓ Parsed ${symbols.length} symbols from NSE CSV`);  if (pastFile) {
+    const pastText = await readFileAsText(pastFile);
+    pastData = parsePastData(pastText);
+    logLine('info', `↺ Loaded past data for ${Object.keys(pastData).length} stocks`);
+  }
+
+  await fetchDividendData(symbols);
+}
+
+async function fetchDividendData(symbols) {
+  const SAFE_LIMIT = 40;
+  const results = [];
+  const total = symbols.length;
+  updateProgress(0);
+
+  // Prime NSE session first so cookies are set for all subsequent calls
+  logLine('info', '⟳ Priming NSE session for live prices…');
+  await primeNSESession();
+
+  for (let i = 0; i < total; i++) {
+    const sym = symbols[i];
+    const niftyRank = i + 1;
+    const inSafeZone = niftyRank <= SAFE_LIMIT;
+
+    updateProgress(Math.round((i / total) * 85));
+    document.getElementById('progress-label').textContent =
+      `Fetching ${sym} (${i+1}/${total})…`;
+
+    let row = {
+      symbol: sym, niftyRank, inSafeZone,
+      paysDividend: false, ltp: 0, yieldPct: 0,
+      rateRs: 0, lastDivRs: 0, exDate: 'N/A',
+      consistency5y: 0, compositeScore: 0, scoreRank: 0, flag: '❌ No Div',
+    };
+
+    try {
+      // Get dividend data + Yahoo LTP in parallel
+      const [quote, consistency] = await Promise.all([
+        yahooFetch(sym),
+        fetchYahooHistory(sym),
+      ]);
+
+      row.paysDividend  = quote.pays;
+      row.ltp           = +quote.ltp.toFixed(2);
+      row.yieldPct      = +quote.divYield.toFixed(2);
+      row.rateRs        = +quote.divRate.toFixed(2);
+      row.lastDivRs     = +quote.lastDiv.toFixed(2);
+      row.exDate        = quote.exDate;
+      row.consistency5y = consistency;
+      row.flag          = quote.flag;
+
+      // Override LTP with NSE real-time price if session is primed
+      if (_nseSessionPrimed) {
+        try {
+          const nseLtp = await fetchNSEQuote(sym);
+          if (nseLtp > 0) {
+            row.ltp = +nseLtp.toFixed(2);
+            // Recalculate yield with fresh LTP if rate is known
+            if (row.rateRs > 0) {
+              row.yieldPct = +((row.rateRs / nseLtp) * 100).toFixed(2);
+              row.flag = row.yieldPct > 15 ? '⚠️ Verify' : '✅';
+            }
+          }
+        } catch (_) { /* NSE failed for this symbol, keep Yahoo LTP */ }
+      }
+
+      logLine(row.paysDividend ? 'ok' : 'info',
+        `${sym.padEnd(14)} LTP=₹${row.ltp}  yield=${row.yieldPct.toFixed(1)}%  consty=${row.consistency5y}/5`);
+
+    } catch (err) {
+      logLine('warn', `${sym} — fetch failed: ${err.message}`);
+      row.flag = '⚠️ Fetch Error';
+    }
+
+    results.push(row);
+    await sleep(350); // respectful delay — avoids both NSE and Yahoo rate limiting
+  }
+
+  updateProgress(95);
+  logLine('info', '⟳ Computing composite scores…');
+  computeScores(results);
+  updateProgress(100);
+
+  const payerCount = results.filter(r => r.paysDividend && r.inSafeZone).length;
+  logLine('ok', `✓ Done — ${payerCount} dividend payers in safe zone`);
+
+  scanResults = results;
+  await sleep(500);
+  renderResults(results);
+}
+
+// ─── Scoring ──────────────────────────────────────────────────────────────────
+function computeScores(results) {
+  const payers = results.filter(r => r.paysDividend && r.inSafeZone);
+  if (!payers.length) return;
+
+  const maxYield = Math.max(...payers.map(r => Math.min(r.yieldPct, 15)));
+  const SAFE = 40;
+
+  payers.forEach(r => {
+    const yScore = (Math.min(r.yieldPct, 15) / maxYield) * 100;
+    const cScore = (r.consistency5y / 5) * 100;
+    const rScore = ((SAFE - r.niftyRank) / (SAFE - 1)) * 100;
+    r.compositeScore = +((yScore * 0.34 + cScore * 0.33 + rScore * 0.33)).toFixed(2);
+  });
+
+  payers.sort((a,b) => b.compositeScore - a.compositeScore);
+  payers.forEach((r, i) => r.scoreRank = i + 1);
+}
+
+// ─── Render results ───────────────────────────────────────────────────────────
+function renderResults(results) {
+  document.getElementById('step-progress').classList.add('done');
+  document.getElementById('results-section').style.display = 'block';
+  document.getElementById('action-section').style.display = 'block';
+  document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+
+  const payers = results.filter(r => r.paysDividend && r.inSafeZone);
+  const avgYield = payers.length
+    ? (payers.reduce((s,r) => s + r.yieldPct, 0) / payers.length).toFixed(2)
+    : 0;
+  const top = payers.sort((a,b) => b.compositeScore - a.compositeScore)[0];
+
+  // Stats
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-chip"><div class="val">${results.length}</div><div class="lbl">Total Stocks</div></div>
+    <div class="stat-chip"><div class="val">${payers.length}</div><div class="lbl">Dividend Payers</div></div>
+    <div class="stat-chip"><div class="val">${avgYield}%</div><div class="lbl">Avg Yield</div></div>
+    <div class="stat-chip"><div class="val">${top ? top.symbol : '—'}</div><div class="lbl">Top Scorer</div></div>
+  `;
+
+  // Change analysis
+  if (Object.keys(pastData).length > 0) {
+    const changes = [];
+    results.forEach(r => {
+      const prev = pastData[r.symbol];
+      if (!prev) { changes.push(`<span class="change-new">🟢 ${r.symbol} — New in index</span>`); return; }
+      const rankChg = prev.niftyRank - r.niftyRank;
+      if (rankChg > 5)  changes.push(`<span class="change-up">⬆ ${r.symbol} climbed ${rankChg} spots</span>`);
+      if (rankChg < -5) changes.push(`<span class="change-down">⬇ ${r.symbol} fell ${Math.abs(rankChg)} spots</span>`);
+    });
+    Object.keys(pastData).forEach(sym => {
+      if (!results.find(r => r.symbol === sym))
+        changes.push(`<span class="change-down">🔴 ${sym} — Dropped from index</span>`);
+    });
+    if (changes.length) {
+      document.getElementById('change-banner').style.display = 'block';
+      document.getElementById('change-banner').innerHTML =
+        '<strong style="font-size:13px">📈 Changes vs last run:</strong><br>' +
+        changes.join(' &nbsp;·&nbsp; ');
+    }
+  }
+
+  // Table — sorted: dividend payers first (by score), then non-payers
+  const sorted = [
+    ...results.filter(r => r.inSafeZone && r.paysDividend).sort((a,b) => b.compositeScore - a.compositeScore),
+    ...results.filter(r => r.inSafeZone && !r.paysDividend).sort((a,b) => a.niftyRank - b.niftyRank),
+    ...results.filter(r => !r.inSafeZone).sort((a,b) => a.niftyRank - b.niftyRank),
+  ];
+
+  const tbody = document.getElementById('results-body');
+  tbody.innerHTML = '';
+  sorted.forEach((r, i) => {
+    const scoreWidth = r.compositeScore ? Math.round(r.compositeScore) : 0;
+    const flagClass  = r.flag.includes('✅') ? 'badge-green'
+                     : r.flag.includes('⚠') ? 'badge-yellow' : 'badge-red';
+    const zoneStyle  = r.inSafeZone ? '' : 'color:var(--muted);font-style:italic';
+
+    let changeCell = '';
+    if (pastData[r.symbol]) {
+      const rankChg = pastData[r.symbol].niftyRank - r.niftyRank;
+      if (rankChg > 2)       changeCell = `<span class="change-up">▲${rankChg}</span>`;
+      else if (rankChg < -2) changeCell = `<span class="change-down">▼${Math.abs(rankChg)}</span>`;
+    } else if (Object.keys(pastData).length > 0) {
+      changeCell = '<span class="change-new">NEW</span>';
+    }
+
+    tbody.insertAdjacentHTML('beforeend', `
+      <tr style="${zoneStyle}">
+        <td style="color:var(--muted);font-family:var(--mono)">${r.scoreRank || '—'}</td>
+        <td class="sym">${r.symbol} ${changeCell}</td>
+        <td>${r.niftyRank}${!r.inSafeZone ? ' ⚠' : ''}</td>
+        <td class="ltp-val">₹${r.ltp ? r.ltp.toLocaleString('en-IN') : '—'}</td>
+        <td style="color:${r.yieldPct>0?'var(--accent)':'var(--muted)'}">${r.yieldPct ? r.yieldPct+'%' : '—'}</td>
+        <td>${r.rateRs || '—'}</td>
+        <td>${r.lastDivRs || '—'}</td>
+        <td style="font-family:var(--mono);font-size:13px">${r.exDate}</td>
+        <td>${r.consistency5y ? r.consistency5y+'/5' : '—'}</td>
+        <td>
+          <div class="score-bar-wrap">
+            <div class="score-bar" style="width:${Math.min(scoreWidth, 80)}px;max-width:80px"></div>
+            <span style="font-family:var(--mono);font-size:13px">${r.compositeScore || '—'}</span>
+          </div>
+        </td>
+        <td><span class="badge ${flagClass}">${r.flag}</span></td>
+      </tr>
+    `);
+  });
+
+  // Pre-fill email in confirm box
+  if (userEmail) document.getElementById('confirm-email').value = userEmail;
+}
+
+// ─── Action: Gmail compose (opens browser tab, no server) ─────────────────────
+function toggleGmailInput() {
+  const row = document.getElementById('gmail-input-row');
+  row.classList.toggle('visible');
+  if (row.classList.contains('visible')) {
+    document.getElementById('gmail-to').focus();
+  }
+}
+
+function sendViaGmail() {
+  const to = document.getElementById('gmail-to').value.trim();
+  if (!to || !to.includes('@')) { showToast('Enter a valid email address'); return; }
+
+  const date = new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+  const payers = scanResults
+    .filter(r => r.paysDividend && r.inSafeZone)
+    .sort((a,b) => b.compositeScore - a.compositeScore)
+    .slice(0, 10);
+
+  const subject = encodeURIComponent(`Nifty 50 Dividend Tracker — ${date}`);
+
+  // Plain text body for mailto
+  let body = `Nifty 50 Dividend Tracker — ${date}\n`;
+  body += `${'─'.repeat(52)}\n\n`;
+  body += `TOP 10 DIVIDEND STOCKS (by Composite Score)\n\n`;
+  body += `${'Rank'.padEnd(6)}${'Symbol'.padEnd(14)}${'Yield%'.padEnd(10)}${'Rate ₹'.padEnd(10)}${'Consistency'.padEnd(14)}Score\n`;
+  body += `${'─'.repeat(54)}\n`;
+  payers.forEach(r => {
+    body += `${String(r.scoreRank).padEnd(6)}${r.symbol.padEnd(14)}${(r.yieldPct+'%').padEnd(10)}${String(r.rateRs).padEnd(10)}${(r.consistency5y+'/5').padEnd(14)}${r.compositeScore}\n`;
+  });
+  body += `\n${'─'.repeat(52)}\n`;
+  body += `Total scanned: ${scanResults.length}  |  Dividend payers: ${payers.length}\n`;
+  body += `Scoring: Yield 34% + Consistency 33% + Nifty Rank 33%\n\n`;
+  body += `⚠️ Data from Yahoo Finance. Always verify on NSE before acting.\n\n`;
+  body += `Full data CSV is attached (download separately and attach manually if needed).`;
+
+  const mailtoUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(to)}&su=${subject}&body=${encodeURIComponent(body)}`;
+
+  // Also trigger CSV download so user can attach it
+  downloadCSV(scanResults);
+
+  // Small delay so CSV downloads first, then Gmail opens
+  setTimeout(() => {
+    window.open(mailtoUrl, '_blank');
+    showToast('✅ Gmail opened + CSV downloaded to attach');
+  }, 600);
+}
+
+// ─── Action: Google Drive (OAuth2 implicit flow via Google Identity Services) ──
+const GDRIVE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // replace with your OAuth client ID
+// Get one free at: https://console.cloud.google.com → APIs → Drive API → Credentials → OAuth 2.0 Client ID
+// Authorised JS origin: http://localhost:5000
+
+let driveAccessToken = null;
+
+function saveToGoogleDrive() {
+  if (GDRIVE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID') {
+    showDriveSetupInfo();
+    return;
+  }
+
+  setDriveStatus('🔐 Signing in with Google…');
+
+  // Load Google Identity Services if not already loaded
+  if (!window.google || !window.google.accounts) {
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.onload = () => initGoogleDriveAuth();
+    document.head.appendChild(script);
+  } else {
+    initGoogleDriveAuth();
+  }
+}
+
+function initGoogleDriveAuth() {
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: GDRIVE_CLIENT_ID,
+    scope: 'https://www.googleapis.com/auth/drive.file',
+    callback: (response) => {
+      if (response.error) {
+        setDriveStatus('❌ Sign-in failed: ' + response.error);
+        return;
+      }
+      driveAccessToken = response.access_token;
+      uploadFileToDrive(driveAccessToken);
+    },
+  });
+  client.requestAccessToken();
+}
+
+async function uploadFileToDrive(token) {
+  setDriveStatus('⬆️ Uploading to Drive…');
+
+  const date = new Date().toISOString().slice(0, 10);
+  const filename = `nifty50_dividends_${date}.csv`;
+
+  // Build CSV content
+  const headers = ['Score Rank','Symbol','Nifty Rank','LTP ₹','Safe Zone','Pays Dividend',
+    'Yield %','Rate ₹','Last Div ₹','Ex-Date','Consistency 5Y','Composite Score','Flag'];
+  const rows = scanResults.map(r => [
+    r.scoreRank||'', r.symbol, r.niftyRank, r.ltp||0, r.inSafeZone?'Yes':'No',
+    r.paysDividend?'Yes':'No', r.yieldPct, r.rateRs, r.lastDivRs,
+    r.exDate, r.consistency5y, r.compositeScore, r.flag
+  ]);
+  const csvContent = [headers, ...rows].map(r => r.join(',')).join('\n');
+
+  // Multipart upload to Google Drive
+  const boundary = 'nifty_tracker_boundary';
+  const metadata = JSON.stringify({ name: filename, mimeType: 'text/csv' });
+
+  const body = [
+    `--${boundary}`,
+    'Content-Type: application/json; charset=UTF-8',
+    '',
+    metadata,
+    `--${boundary}`,
+    'Content-Type: text/csv',
+    '',
+    csvContent,
+    `--${boundary}--`,
+  ].join('\r\n');
+
+  try {
+    const res = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': `multipart/related; boundary=${boundary}`,
+      },
+      body,
+    });
+
+    if (res.ok) {
+      const file = await res.json();
+      const driveUrl = `https://drive.google.com/file/d/${file.id}/view`;
+      setDriveStatus(`✅ Saved! <a href="${driveUrl}" target="_blank" style="color:#4285F4">Open in Drive →</a>`);
+      showToast('✅ Saved to Google Drive');
+    } else {
+      const err = await res.json();
+      setDriveStatus('❌ Upload failed: ' + (err.error?.message || 'unknown error'));
+    }
+  } catch (e) {
+    setDriveStatus('❌ Network error: ' + e.message);
+  }
+}
+
+function setDriveStatus(html) {
+  const el = document.getElementById('drive-status');
+  el.style.display = 'block';
+  el.innerHTML = html;
+}
+
+function showDriveSetupInfo() {
+  const el = document.getElementById('drive-status');
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div style="background:rgba(66,133,244,0.08);border:1px solid rgba(66,133,244,0.25);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.8;margin-top:4px;">
+      <strong style="color:#4285F4">One-time setup needed (5 min):</strong><br>
+      1. Go to <a href="https://console.cloud.google.com" target="_blank" style="color:#4285F4">console.cloud.google.com</a><br>
+      2. New project → Enable <strong>Google Drive API</strong><br>
+      3. Credentials → OAuth 2.0 Client ID → Web application<br>
+      4. Add <code style="background:rgba(255,255,255,0.1);padding:1px 5px;border-radius:3px">http://localhost:5000</code> as Authorised JS origin<br>
+      5. Copy the Client ID → paste in <code style="background:rgba(255,255,255,0.1);padding:1px 5px;border-radius:3px">index.html</code> line: <code>GDRIVE_CLIENT_ID</code>
+    </div>`;
+}
+
+// ─── Action: Local CSV download ───────────────────────────────────────────────
+function downloadCSV(results) {
+  const headers = ['Score Rank','Symbol','Nifty Rank','LTP ₹','Safe Zone','Pays Dividend',
+    'Yield %','Rate ₹','Last Div ₹','Ex-Date','Consistency 5Y','Composite Score','Flag'];
+  const rows = results.map(r => [
+    r.scoreRank||'', r.symbol, r.niftyRank, r.ltp||0, r.inSafeZone?'Yes':'No',
+    r.paysDividend?'Yes':'No', r.yieldPct, r.rateRs, r.lastDivRs,
+    r.exDate, r.consistency5y, r.compositeScore, r.flag
+  ]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `nifty50_dividends_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  showToast('✅ CSV downloaded');
+}
+document.getElementById('btn-download-csv').addEventListener('click', () => downloadCSV(scanResults));
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function readFileAsText(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload  = e => res(e.target.result);
+    r.onerror = rej;
+    r.readAsText(file);
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function updateProgress(pct) {
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function logLine(cls, msg) {
+  const box = document.getElementById('log-box');
+  const line = document.createElement('div');
+  line.className = cls;
+  line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
