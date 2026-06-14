@@ -638,61 +638,22 @@ function parsePastData(text) {
   return data;
 }
 
-// ─── Data fetch: NSE direct → Yahoo cache-busted → multi-proxy fallback ───────
+// ─── Data fetch via Cloudflare Worker ────────────────────────────────────────
 //
-// Tier 1: NSE official API  — real-time, only works on live domain
-// Tier 2: Yahoo Finance direct — cache-busted, works in Chrome on live domain
-// Tier 3: Multi-proxy chain — tried in order until one works
+// Worker runs server-side — no CORS issues, always fresh data.
+// Deploy worker.js to Cloudflare (free), then paste your URL below.
+//
+// To get your Worker URL:
+//   1. https://workers.cloudflare.com → sign up free
+//   2. Create Worker → paste worker.js code → Deploy
+//   3. Copy the URL shown (e.g. viset-proxy.yourname.workers.dev)
+//   4. Replace the WORKER_URL value below
+
+const WORKER_URL = 'https://viset-nifty50-dividend-proxy.official-firechars.workers.dev';
 
 let _nseSessionPrimed = false;
-let _yahooMethod = 'direct';
 
-// Proxy list — tried in order, first success wins
-const PROXIES = [
-  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-];
-let _proxyIndex = 0;
-
-async function fetchViaProxy(url) {
-  // Try proxies in order, move to next on failure
-  for (let i = _proxyIndex; i < PROXIES.length; i++) {
-    try {
-      const proxyUrl = PROXIES[i](url);
-      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const wrapper = await res.json();
-      // allorigins wraps in {contents}, codetabs returns raw
-      const text = wrapper.contents ?? (typeof wrapper === 'string' ? wrapper : JSON.stringify(wrapper));
-      const json = JSON.parse(text);
-      _proxyIndex = i; // stick with this proxy for remaining stocks
-      return json;
-    } catch (e) {
-      if (i === _proxyIndex && i < PROXIES.length - 1) {
-        logLine('warn', `Proxy ${i+1} failed — trying next proxy…`);
-        _proxyIndex = i + 1;
-      }
-    }
-  }
-  throw new Error('All proxies failed');
-}
-
-// ── Tier 1: NSE live price (real domain only) ─────────────────────────────────
-async function fetchNSEQuote(symbol) {
-  const url = `https://www.nseindia.com/api/quote-equity?symbol=${encodeURIComponent(symbol)}`;
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(6000),
-    headers: { 'Accept': 'application/json', 'Referer': 'https://www.nseindia.com/' },
-    credentials: 'include',
-  });
-  if (!res.ok) throw new Error(`NSE HTTP ${res.status}`);
-  const json = await res.json();
-  const ltp = json?.priceInfo?.lastPrice || json?.priceInfo?.close || 0;
-  if (!ltp) throw new Error('NSE returned no price');
-  return ltp;
-}
-
+// ── NSE live price (supplements Worker data with real-time LTP) ───────────────
 async function primeNSESession() {
   if (_nseSessionPrimed) return;
   try {
@@ -704,33 +665,81 @@ async function primeNSESession() {
     _nseSessionPrimed = true;
     logLine('ok', '✓ NSE session primed — using live exchange prices');
   } catch (_) {
-    logLine('warn', 'NSE session failed — LTP from Yahoo Finance');
+    logLine('warn', 'NSE session unavailable — using Yahoo prices');
   }
 }
 
-// ── Tier 2 + 3: Yahoo Finance (dividend data + LTP fallback) ─────────────────
-async function yahooFetch(symbol) {
-  const ticker = symbol + '.NS';
-  const ts = Date.now();
-  const quoteUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=summaryDetail,price&_=${ts}`;
+async function fetchNSEQuote(symbol) {
+  const url = `https://www.nseindia.com/api/quote-equity?symbol=${encodeURIComponent(symbol)}`;
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(5000),
+    headers: { 'Accept': 'application/json', 'Referer': 'https://www.nseindia.com/' },
+    credentials: 'include',
+  });
+  if (!res.ok) throw new Error(`NSE ${res.status}`);
+  const json = await res.json();
+  const ltp = json?.priceInfo?.lastPrice || json?.priceInfo?.close || 0;
+  if (!ltp) throw new Error('no price');
+  return ltp;
+}
 
-  // Tier 2: direct Yahoo
-  if (_yahooMethod === 'direct') {
-    try {
-      const res = await fetch(quoteUrl, {
-        signal: AbortSignal.timeout(5000),
-        headers: { 'Accept': 'application/json' },
-      });
-      if (res.ok) return parseYahooQuote(await res.json());
-    } catch (_) {
-      _yahooMethod = 'proxy';
-      logLine('info', 'Yahoo direct blocked — switching to proxy');
-    }
+// ── Main fetch via Cloudflare Worker ─────────────────────────────────────────
+async function yahooFetch(symbol) {
+  // Check if Worker URL has been configured
+  if (WORKER_URL.includes('YOUR-NAME')) {
+    // Worker not configured — fall back to direct Yahoo fetch
+    return yahooFetchDirect(symbol);
   }
 
-  // Tier 3: proxy chain
-  const json = await fetchViaProxy(quoteUrl);
+  const ts = Date.now();
+  const res = await fetch(`${WORKER_URL}/quote?symbol=${symbol}&_=${ts}`, {
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!res.ok) throw new Error(`Worker HTTP ${res.status}`);
+  return await res.json();
+}
+
+async function fetchYahooHistory(symbol) {
+  if (WORKER_URL.includes('YOUR-NAME')) {
+    return yahooHistoryDirect(symbol);
+  }
+
+  const ts = Date.now();
+  try {
+    const res = await fetch(`${WORKER_URL}/history?symbol=${symbol}&_=${ts}`, {
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) return 0;
+    const json = await res.json();
+    return json.consistency5y || 0;
+  } catch (_) { return 0; }
+}
+
+// ── Direct Yahoo fallback (when Worker not configured) ────────────────────────
+async function yahooFetchDirect(symbol) {
+  const ticker = symbol + '.NS';
+  const ts = Date.now();
+  const url = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${ticker}?modules=summaryDetail,price&_=${ts}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(`Yahoo ${res.status}`);
+  const json = await res.json();
   return parseYahooQuote(json);
+}
+
+async function yahooHistoryDirect(symbol) {
+  const ticker = symbol + '.NS';
+  const ts = Date.now();
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?events=dividends&range=5y&interval=3mo&_=${ts}`;
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) return 0;
+    const json = await res.json();
+    const divEvents = json?.chart?.result?.[0]?.events?.dividends;
+    if (!divEvents) return 0;
+    const cy = new Date().getFullYear();
+    const py = new Set(Object.values(divEvents).map(d => new Date(d.date * 1000).getFullYear()));
+    return [0,1,2,3,4].filter(i => py.has(cy - 1 - i)).length;
+  } catch (_) { return 0; }
 }
 
 function parseYahooQuote(json) {
@@ -745,31 +754,6 @@ function parseYahooQuote(json) {
   const pays     = divRate > 0 || divYield > 0;
   const flag     = divYield > 15 ? '⚠️ Verify' : pays ? '✅' : '❌ No Div';
   return { divRate, divYield, ltp, exDate, lastDiv, pays, flag };
-}
-
-// ── Dividend history (cache-busted, proxy fallback) ───────────────────────────
-async function fetchYahooHistory(symbol) {
-  const ticker = symbol + '.NS';
-  const ts = Date.now();
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?events=dividends&range=5y&interval=3mo&_=${ts}`;
-
-  let json;
-  if (_yahooMethod === 'direct') {
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
-      if (res.ok) json = await res.json();
-    } catch (_) {}
-  }
-
-  if (!json) {
-    try { json = await fetchViaProxy(url); } catch (_) { return 0; }
-  }
-
-  const divEvents = json?.chart?.result?.[0]?.events?.dividends;
-  if (!divEvents) return 0;
-  const currentYear = new Date().getFullYear();
-  const paidYears = new Set(Object.values(divEvents).map(d => new Date(d.date * 1000).getFullYear()));
-  return [0,1,2,3,4].filter(i => paidYears.has(currentYear - 1 - i)).length;
 }
 
 // ─── Scan ─────────────────────────────────────────────────────────────────────
@@ -788,7 +772,15 @@ async function startScan() {
     logLine('err', '✗ Could not parse symbols from CSV. Check format.');
     return;
   }
-  logLine('ok', `✓ Parsed ${symbols.length} symbols from NSE CSV`);  if (pastFile) {
+  logLine('ok', `✓ Parsed ${symbols.length} symbols from NSE CSV`);
+
+  // Warn if Cloudflare Worker not configured yet
+  if (WORKER_URL.includes('YOUR-NAME')) {
+    logLine('warn', '⚠️ Worker URL not set — trying direct Yahoo fetch (may fail on live domain)');
+    logLine('warn', '   Deploy worker.js to Cloudflare and set WORKER_URL in niftyscan.html');
+  } else {
+    logLine('ok', `✓ Using Cloudflare Worker: ${WORKER_URL}`);
+  }  if (pastFile) {
     const pastText = await readFileAsText(pastFile);
     pastData = parsePastData(pastText);
     logLine('info', `↺ Loaded past data for ${Object.keys(pastData).length} stocks`);
