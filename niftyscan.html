@@ -546,7 +546,7 @@
         </div>
 
         <!-- Google Drive tile -->
-        <div class="action-tile tile-drive" id="tile-drive" onclick="saveToGoogleDrive()">
+        <div class="action-tile tile-drive" id="tile-drive" onclick="saveToGoogleDrive()" style="display:none">
           <div class="tile-icon">📁</div>
           <div>
             <div class="tile-title">Save to Google Drive</div>
@@ -1104,6 +1104,10 @@ const GDRIVE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // replace with your OAuth cli
 // Get one free at: https://console.cloud.google.com → APIs → Drive API → Credentials → OAuth 2.0 Client ID
 // Authorised JS origin: http://localhost:5000
 
+if (GDRIVE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID') {
+  document.getElementById('tile-drive').style.display = '';
+}
+
 let driveAccessToken = null;
 
 function saveToGoogleDrive() {
@@ -1204,17 +1208,9 @@ function setDriveStatus(html) {
 }
 
 function showDriveSetupInfo() {
-  const el = document.getElementById('drive-status');
-  el.style.display = 'block';
-  el.innerHTML = `
-    <div style="background:rgba(66,133,244,0.08);border:1px solid rgba(66,133,244,0.25);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.8;margin-top:4px;">
-      <strong style="color:#4285F4">One-time setup needed (5 min):</strong><br>
-      1. Go to <a href="https://console.cloud.google.com" target="_blank" style="color:#4285F4">console.cloud.google.com</a><br>
-      2. New project → Enable <strong>Google Drive API</strong><br>
-      3. Credentials → OAuth 2.0 Client ID → Web application<br>
-      4. Add <code style="background:rgba(255,255,255,0.1);padding:1px 5px;border-radius:3px">http://localhost:5000</code> as Authorised JS origin<br>
-      5. Copy the Client ID → paste in <code style="background:rgba(255,255,255,0.1);padding:1px 5px;border-radius:3px">index.html</code> line: <code>GDRIVE_CLIENT_ID</code>
-    </div>`;
+  // Google Drive isn't configured yet — tile is hidden from users, so this
+  // should never actually fire in production. Kept as a safe no-op.
+  console.warn('Google Drive not configured: set GDRIVE_CLIENT_ID in niftyscan.html');
 }
 
 // ─── Action: Local CSV download ───────────────────────────────────────────────
