@@ -83,6 +83,24 @@
     align-items: center;
     gap: 14px;
   }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .back-link:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 600px) {
+    .back-link { font-size: 12px; padding: 6px 10px; }
+  }
   .logo-mark {
     width: 36px; height: 36px;
     background: var(--accent);
@@ -157,7 +175,7 @@
     position: relative;
   }
   .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: rgba(0,200,150,0.04); }
-  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .upload-zone input { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .upload-icon { font-size: 32px; margin-bottom: 12px; }
   .upload-zone h3 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
   .upload-zone small { font-size: 12px; color: var(--muted); }
@@ -410,6 +428,7 @@
   <div class="logo-mark">N₅₀</div>
   <h1>Nifty 50 · Dividend Tracker</h1>
   <span id="run-date"></span>
+  <a href="products.html" id="back-link" class="back-link">← Back</a>
 </header>
 
 <main>
@@ -421,7 +440,7 @@
     <p>Download from <a href="https://www.nseindia.com/index-tracker/NIFTY%2050" target="_blank" style="color:var(--accent2)">nseindia.com → NIFTY 50 tracker</a> and upload here.</p>
 
     <div class="upload-zone" id="upload-zone">
-      <input type="file" id="csv-input" accept=".csv">
+      <input type="file" id="csv-input" accept=".csv,text/csv,text/comma-separated-values,application/csv,application/vnd.ms-excel,.xls,.xlsx">
       <div class="upload-icon">📂</div>
       <h3>Drop CSV here or click to browse</h3>
       <small>Only the Nifty 50 index tracker CSV from NSE</small>
@@ -435,7 +454,7 @@
         <button class="btn btn-secondary" id="btn-upload-past">
           📎 Upload past ranking (CSV/Excel)
         </button>
-        <input type="file" id="past-input" accept=".csv,.xlsx" style="display:none">
+        <input type="file" id="past-input" accept=".csv,.xlsx,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none">
         <button class="btn btn-secondary" id="btn-skip-past">
           ↩ Fresh run — skip comparison
         </button>
@@ -569,6 +588,14 @@ document.getElementById('run-date').textContent = new Date().toLocaleDateString(
 });
 
 // ─── File Upload ──────────────────────────────────────────────────────────────
+document.getElementById('back-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  if (window.history.length > 1 && document.referrer.includes(window.location.hostname)) {
+    window.history.back();
+  } else {
+    window.location.href = 'products.html';
+  }
+});
 const csvInput = document.getElementById('csv-input');
 const uploadZone = document.getElementById('upload-zone');
 
