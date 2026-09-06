@@ -385,6 +385,17 @@
   #pfos-product .product-info {
     padding: 2rem 2rem 2.5rem !important;
   }
+  #trendtalk-product {
+    grid-column: span 1 !important;
+    display: block !important;
+  }
+  #trendtalk-product .product-screenshot {
+    height: 320px;
+  }
+  #trendtalk-product .product-info {
+    padding: 2rem 2rem 2.5rem !important;
+    background: #0A0F1E !important;
+  }
 }
 @media (max-width: 600px) {
   .product-info { padding: 1.5rem; }
