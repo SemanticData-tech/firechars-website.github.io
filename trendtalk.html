@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrendTalk — India's Structured Debate Platform | FireChars.in</title>
+  <meta name="description" content="TrendTalk is a live debate and social discussion platform built for Indian communities. Pick your side — Support or Against — on trending topics. AI moderation, real-time votes, and a explore feed for every debate.">
+  <meta name="keywords" content="TrendTalk debate platform India, thetalktrend.com, online debate app India, social discussion platform, support against voting, AI moderated debate, trending topics India, FireChars TrendTalk">
+  <meta name="author" content="FireChars.in">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://firechars.in/trendtalk.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://firechars.in/trendtalk.html">
+  <meta property="og:title"       content="TrendTalk — India's Structured Debate Platform">
+  <meta property="og:description" content="Pick your side on India's hottest topics. TrendTalk is a live debate platform with AI moderation, real-time vote tallies, and structured Support vs Against threads.">
+  <meta property="og:locale"      content="en_IN">
+  <meta property="og:site_name"   content="FireChars.in">
+  <meta property="og:image"       content="https://thetalktrend.com/api/v1/topic/files/35/b1f83580-5b89-495d-95a5-730a481a93be.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="TrendTalk — Debate Platform by FireChars">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@firechars">
+  <meta name="twitter:title"       content="TrendTalk — India's Structured Debate Platform">
+  <meta name="twitter:description" content="Pick your side. Debate what matters. TrendTalk — built by FireChars.">
+  <meta name="twitter:image"       content="https://thetalktrend.com/api/v1/topic/files/35/b1f83580-5b89-495d-95a5-730a481a93be.jpg">
+
+  <!-- Schema.org — WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TrendTalk",
+    "alternateName": "TheTalkTrend",
+    "url": "https://thetalktrend.com",
+    "applicationCategory": "SocialNetworkingApplication",
+    "operatingSystem": "Web, Android, iOS",
+    "description": "TrendTalk is a structured debate and social discussion platform where users vote Support or Against on trending Indian topics. Features AI-powered toxicity detection, real-time vote tallies, structured argument threads, an explore feed, and user credibility scoring.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": [
+      "Support / Against voting system",
+      "Structured debate threads",
+      "AI toxicity detection and moderation",
+      "Real-time vote tallies",
+      "Explore feed for trending debates",
+      "Dark mode interface",
+      "User credibility scoring",
+      "Full view and split view debate layout",
+      "Comment upvotes",
+      "Search and filter topics",
+      "Share debates to WhatsApp",
+      "Mobile-first responsive design"
+    ],
+    "screenshot": "https://thetalktrend.com/api/v1/topic/files/35/b1f83580-5b89-495d-95a5-730a481a93be.jpg",
+    "sameAs": "https://thetalktrend.com",
+    "creator": {
+      "@type": "Organization",
+      "name": "FireChars",
+      "url": "https://firechars.in"
+    }
+  }
+  </script>
+
+  <!-- Schema.org — BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "FireChars", "item": "https://firechars.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://firechars.in/products.html" },
+      { "@type": "ListItem", "position": 3, "name": "TrendTalk", "item": "https://firechars.in/trendtalk.html" }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* ══ TrendTalk Brand Palette ══════════════════════════ */
+    :root {
+      --tt-blue:      #3B82F6;
+      --tt-blue-dark: #2563EB;
+      --tt-support:   #22C55E;
+      --tt-against:   #EF4444;
+      --tt-bg:        #0A0F1E;
+      --tt-card:      #0F1629;
+      --tt-border:    rgba(59,130,246,0.15);
+      --tt-muted:     rgba(148,163,184,0.7);
+    }
+
+    /* ══ Hero ═════════════════════════════════════════════ */
+    .tt-hero {
+      min-height: 100vh;
+      background: var(--tt-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 9rem 5% 6rem;
+      text-align: center;
+    }
+    .tt-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
+    }
+    .tt-hero-glow {
+      position: absolute; top: 30%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .tt-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+
+    .tt-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--tt-blue); margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .tt-eyebrow::before, .tt-eyebrow::after {
+      content: ''; width: 30px; height: 1px; background: var(--tt-blue);
+    }
+
+    .tt-logo-wrap {
+      display: inline-flex; align-items: center; gap: 16px;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .tt-logo-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--tt-blue), var(--tt-blue-dark));
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #fff;
+      box-shadow: 0 12px 40px rgba(59,130,246,0.4);
+    }
+    .tt-logo-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: 4px; color: #fff; line-height: 1;
+    }
+    .tt-logo-name span { color: var(--tt-blue); }
+
+    .tt-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      line-height: 1.1; letter-spacing: 3px;
+      color: var(--white); margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .tt-hero h1 em { color: var(--tt-blue); font-style: normal; }
+
+    .tt-hero-desc {
+      font-size: 1rem; line-height: 1.8; color: var(--tt-muted);
+      max-width: 620px; margin: 0 auto 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    .tt-hero-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+    }
+    .tt-btn-primary {
+      padding: 14px 36px;
+      background: var(--tt-blue);
+      color: #fff; font-family: 'Rajdhani', sans-serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .tt-btn-primary:hover { background: var(--tt-blue-dark); transform: translateY(-2px); }
+    .tt-btn-secondary {
+      padding: 13px 36px;
+      background: transparent; color: var(--tt-muted);
+      font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(59,130,246,0.3);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.3s;
+    }
+    .tt-btn-secondary:hover { border-color: var(--tt-blue); color: var(--tt-blue); }
+
+    /* ══ Vote ticker ══════════════════════════════════════ */
+    .tt-vote-ticker {
+      display: flex; gap: 2rem; justify-content: center;
+      margin-top: 3rem;
+      opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+    }
+    .tt-vote-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.75rem;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .tt-vote-pill.support { color: var(--tt-support); }
+    .tt-vote-pill.against { color: var(--tt-against); }
+    .tt-vote-dot { width: 8px; height: 8px; border-radius: 50%; animation: pulse 2s infinite; }
+    .tt-vote-dot.s { background: var(--tt-support); }
+    .tt-vote-dot.a { background: var(--tt-against); animation-delay: 0.5s; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
+
+    /* ══ How It Works ═════════════════════════════════════ */
+    .tt-how {
+      background: #080C18;
+      padding: 7rem 5%;
+      border-top: 1px solid var(--tt-border);
+    }
+    .tt-section-label {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 5px; text-transform: uppercase; color: var(--tt-blue);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+    }
+    .tt-section-label::before { content:''; width:30px; height:1px; background:var(--tt-blue); }
+    .tt-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 3px;
+      color: var(--white); margin-bottom: 4rem;
+    }
+    .tt-steps {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      background: var(--tt-border);
+    }
+    .tt-step {
+      background: var(--tt-card); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .tt-step:hover { background: #131d35; }
+    .tt-step-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 4rem; letter-spacing: 2px;
+      color: rgba(59,130,246,0.07); line-height: 1;
+      position: absolute; bottom: 1rem; right: 1.5rem;
+    }
+    .tt-step-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .tt-step h3 {
+      font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
+      letter-spacing: 1px; color: var(--white); margin-bottom: 0.75rem;
+    }
+    .tt-step p {
+      font-size: 0.83rem; line-height: 1.7; color: var(--tt-muted);
+    }
+
+    /* ══ Features Grid ════════════════════════════════════ */
+    .tt-features {
+      background: var(--tt-bg); padding: 7rem 5%;
+      border-top: 1px solid var(--tt-border);
+    }
+    .tt-features-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      background: var(--tt-border);
+    }
+    .tt-feat {
+      background: var(--tt-card); padding: 2rem 2rem 2.5rem;
+      transition: background 0.3s;
+    }
+    .tt-feat:hover { background: #131d35; }
+    .tt-feat-icon {
+      font-size: 1.6rem; margin-bottom: 1rem;
+    }
+    .tt-feat h3 {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 1px; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .tt-feat p { font-size: 0.8rem; line-height: 1.7; color: var(--tt-muted); }
+
+    /* ══ Live Debates Feed ════════════════════════════════ */
+    .tt-debates {
+      background: #080C18; padding: 7rem 5%;
+      border-top: 1px solid var(--tt-border);
+    }
+    .tt-debates-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .tt-debate-card {
+      background: var(--tt-card);
+      border: 1px solid var(--tt-border);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none; display: block;
+    }
+    .tt-debate-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateY(-4px);
+    }
+    .tt-debate-img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; filter: brightness(0.85);
+      transition: filter 0.4s;
+    }
+    .tt-debate-card:hover .tt-debate-img { filter: brightness(1); }
+    .tt-debate-body { padding: 1.5rem; }
+    .tt-debate-title {
+      font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--white); line-height: 1.4; margin-bottom: 0.75rem;
+    }
+    .tt-debate-desc {
+      font-size: 0.78rem; line-height: 1.65; color: var(--tt-muted);
+      margin-bottom: 1.2rem;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .tt-debate-bars {
+      display: flex; gap: 8px; margin-bottom: 1rem;
+    }
+    .tt-bar-support, .tt-bar-against {
+      flex: 1; padding: 8px 12px; border-radius: 6px;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.7rem;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tt-bar-support {
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+      color: var(--tt-support);
+    }
+    .tt-bar-against {
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25);
+      color: var(--tt-against);
+    }
+    .tt-debate-link {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.72rem;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--tt-blue);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tt-debate-link::after { content: '→'; }
+    .tt-debate-tag {
+      display: inline-block; margin-bottom: 0.75rem;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.6rem;
+      letter-spacing: 3px; text-transform: uppercase; padding: 3px 10px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      color: var(--tt-blue); border-radius: 20px;
+    }
+    .tt-debates-cta {
+      text-align: center; margin-top: 3rem;
+    }
+
+    /* ══ Crawlability Section ══════════════════════════════ */
+    .tt-topics {
+      background: var(--tt-bg); padding: 5rem 5%;
+      border-top: 1px solid var(--tt-border);
+    }
+    .tt-topics-list {
+      max-width: 1100px; margin: 2rem auto 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--tt-border);
+    }
+    .tt-topic-item {
+      background: var(--tt-card); padding: 1.2rem 1.5rem;
+      transition: background 0.3s;
+    }
+    .tt-topic-item:hover { background: #131d35; }
+    .tt-topic-title {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.82rem; font-weight: 600;
+      color: var(--white); line-height: 1.4; margin-bottom: 0.4rem;
+    }
+    .tt-topic-meta {
+      font-family: 'Rajdhani', sans-serif; font-size: 0.6rem;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--tt-muted);
+    }
+
+    /* ══ CTA Strip ════════════════════════════════════════ */
+    .tt-cta {
+      background: linear-gradient(135deg, #0A0F1E 0%, #0F1A35 50%, #0A0F1E 100%);
+      border-top: 1px solid var(--tt-border);
+      border-bottom: 1px solid var(--tt-border);
+      padding: 5rem 5%; text-align: center; position: relative; overflow: hidden;
+    }
+    .tt-cta::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(59,130,246,0.08), transparent);
+    }
+    .tt-cta h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 3px;
+      color: var(--white); margin-bottom: 1rem; position: relative;
+    }
+    .tt-cta h2 span { color: var(--tt-blue); }
+    .tt-cta p {
+      font-size: 0.9rem; color: var(--tt-muted);
+      max-width: 520px; margin: 0 auto 2rem; position: relative;
+    }
+    .tt-cta-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ══ Footer ═══════════════════════════════════════════ */
+    footer {
+      background: var(--deep-black);
+      border-top: 1px solid rgba(232,98,26,0.12);
+      padding: 2.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:3px; color:var(--white); }
+    .footer-brand span { color: var(--fire-orange); }
+    .footer-copy { font-size:0.78rem; color:rgba(136,136,136,0.6); font-family:'Rajdhani',sans-serif; letter-spacing:1px; }
+    .footer-copy a { color:var(--fire-orange); text-decoration:none; }
+    .footer-tagline { font-family:'Rajdhani',sans-serif; font-size:0.7rem; letter-spacing:3px; color:rgba(136,136,136,0.5); }
+    @media(max-width:900px) { footer{flex-direction:column;text-align:center;} }
+
+    /* ══ Responsive ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .tt-steps { grid-template-columns: 1fr 1fr; }
+      .tt-features-grid { grid-template-columns: 1fr 1fr; }
+      .tt-debates-grid { grid-template-columns: 1fr; }
+      .tt-topics-list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .tt-steps { grid-template-columns: 1fr; }
+      .tt-features-grid { grid-template-columns: 1fr; }
+      .tt-topics-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <svg class="nav-logo-icon" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 8 C50 8 78 30 78 58 C78 78 66 95 50 100 C34 95 22 78 22 58 C22 30 50 8 50 8Z" fill="url(#nFO)" opacity="0.9"/>
+        <path d="M50 28 C50 28 68 45 68 62 C68 76 60 88 50 92 C40 88 32 76 32 62 C32 45 50 28 50 28Z" fill="url(#nFI)" opacity="0.7"/>
+        <text x="32" y="74" font-family="Arial Black" font-size="28" font-weight="900" fill="white" opacity="0.95">FC</text>
+        <defs>
+          <linearGradient id="nFO" x1="50" y1="8" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#C8860A"/>
+            <stop offset="50%"  stop-color="#E8621A"/>
+            <stop offset="100%" stop-color="#8B4513"/>
+          </linearGradient>
+          <linearGradient id="nFI" x1="50" y1="28" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#F0A040"/>
+            <stop offset="100%" stop-color="#E8621A"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-text"><span>FIRE</span>CHARS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li class="nav-dropdown-wrap">
+        <a href="products.html">Products</a>
+        <ul class="nav-dropdown">
+          <li><a href="products.html#pfos-product"><span class="nav-dropdown-num">00</span>Finance OS</a></li>
+          <li><a href="products.html#attendease-product"><span class="nav-dropdown-num">01</span>AttendEase</a></li>
+          <li><a href="products.html#billing-product"><span class="nav-dropdown-num">02</span>Billing Manager</a></li>
+          <li><a href="products.html#reportcard-product"><span class="nav-dropdown-num">03</span>Report Card</a></li>
+          <li><a href="products.html#attendance-product"><span class="nav-dropdown-num">04</span>Student Attendance</a></li>
+          <li><a href="products.html#viset-product"><span class="nav-dropdown-num">05</span>VISET : Nifty50 Dividend Scan</a></li>
+          <li><a href="products.html#viset-sector-product"><span class="nav-dropdown-num">06</span>VISET : Sector Intelligence</a></li>
+          <li><a href="trendtalk.html" style="color:#3B82F6;"><span class="nav-dropdown-num" style="color:#3B82F6;">07</span>TrendTalk</a></li>
+        </ul>
+      </li>
+      <li><a href="clients.html">Our Work</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <section class="tt-hero" aria-label="TrendTalk — India's Debate Platform">
+    <div class="tt-hero-grid"></div>
+    <div class="tt-hero-glow"></div>
+
+    <div class="tt-hero-content">
+      <div class="tt-eyebrow">FireChars Premium Product</div>
+
+      <div class="tt-logo-wrap">
+        <div class="tt-logo-icon">T</div>
+        <div class="tt-logo-name">Trend<span>Talk</span></div>
+      </div>
+
+      <h1>Where <em>India Debates</em><br>What Matters</h1>
+
+      <p class="tt-hero-desc">
+        TrendTalk is a structured social debate platform built for Indian communities. Pick a side — Support or Against — on the topics that actually matter to you. Every vote is counted in real-time, every argument is AI-moderated, and every debate is structured so the best arguments rise to the top.
+      </p>
+
+      <div class="tt-hero-btns">
+        <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" class="tt-btn-primary">Open TrendTalk →</a>
+        <a href="index.html#contact" class="tt-btn-secondary">License This Platform</a>
+      </div>
+
+      <div class="tt-vote-ticker">
+        <div class="tt-vote-pill support">
+          <div class="tt-vote-dot s"></div>
+          Support Arguments Live
+        </div>
+        <div class="tt-vote-pill against">
+          <div class="tt-vote-dot a"></div>
+          Against Arguments Live
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       HOW IT WORKS
+       ═══════════════════════════════════════ -->
+  <section class="tt-how" aria-labelledby="how-heading">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="tt-section-label">How It Works</div>
+      <h2 class="tt-section-title" id="how-heading">Four Steps to a Structured Debate</h2>
+
+      <div class="tt-steps">
+        <div class="tt-step reveal">
+          <div class="tt-step-icon">🔥</div>
+          <h3>Pick a Trending Topic</h3>
+          <p>Browse the Explore feed or Home feed for debates on current events, movies, politics, sports, startups, and more — all created by real users.</p>
+          <div class="tt-step-num">01</div>
+        </div>
+        <div class="tt-step reveal reveal-delay-1">
+          <div class="tt-step-icon">👍</div>
+          <h3>Choose Your Side</h3>
+          <p>Vote Support or Against on the debate topic. Your vote is recorded in real-time and updates the live support percentage visible to all participants.</p>
+          <div class="tt-step-num">02</div>
+        </div>
+        <div class="tt-step reveal reveal-delay-2">
+          <div class="tt-step-icon">💬</div>
+          <h3>Post Your Argument</h3>
+          <p>Write a Support or Against comment backing your position. Arguments are kept in structured threads — Support on one side, Against on the other — so the debate stays readable.</p>
+          <div class="tt-step-num">03</div>
+        </div>
+        <div class="tt-step reveal reveal-delay-3">
+          <div class="tt-step-icon">🛡️</div>
+          <h3>AI Moderates the Room</h3>
+          <p>Every comment is scanned by an AI toxicity engine before it appears. Low-toxicity comments go live instantly. Flagged content is held for review, keeping the debate civil.</p>
+          <div class="tt-step-num">04</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       LIVE DEBATES FEED
+       ═══════════════════════════════════════ -->
+  <section class="tt-debates" aria-labelledby="debates-heading">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="tt-section-label">Active Debates</div>
+      <h2 class="tt-section-title" id="debates-heading">Latest From TrendTalk</h2>
+      <p style="font-size:0.85rem;color:var(--tt-muted);margin-bottom:3rem;max-width:560px;">
+        These are live debates currently running on TrendTalk. Click any card to join the debate and cast your vote.
+      </p>
+
+      <div class="tt-debates-grid" id="debatesGrid">
+        <!-- Static crawlable cards — always visible to search engines -->
+
+        <!-- Debate 35 -->
+        <article class="tt-debate-card" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+          <a href="https://thetalktrend.com/debate/35" target="_blank" rel="noopener noreferrer" aria-label="Join debate: Bittu Tabahi River Cleaning">
+            <img class="tt-debate-img"
+                 src="https://thetalktrend.com/api/v1/topic/files/35/b1f83580-5b89-495d-95a5-730a481a93be.jpg"
+                 alt="Bittu Tabahi cleaning the Ajnar River in Madhya Pradesh"
+                 loading="lazy">
+          </a>
+          <div class="tt-debate-body">
+            <div class="tt-debate-tag">Environment</div>
+            <h3 class="tt-debate-title" itemprop="headline">
+              Bittu Tabahi Is Cleaning a Polluted River — But Why Did He Have To?
+            </h3>
+            <p class="tt-debate-desc" itemprop="text">
+              A 20-year-old college student, Bittu Tabahi, stepped into the polluted Ajnar River in Madhya Pradesh and started removing plastic, garbage and other waste himself. What began with a few friends eventually became a largely solo effort — raising the question: should individual citizens carry this burden, or is it solely a government responsibility?
+            </p>
+            <div class="tt-debate-bars">
+              <div class="tt-bar-support">👍 Support</div>
+              <div class="tt-bar-against">👎 Against</div>
+            </div>
+            <a href="https://thetalktrend.com/debate/35" class="tt-debate-link" target="_blank" rel="noopener noreferrer" itemprop="url">
+              Join this debate
+            </a>
+          </div>
+        </article>
+
+        <!-- Debate 11 -->
+        <article class="tt-debate-card" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+          <a href="https://thetalktrend.com/debate/11" target="_blank" rel="noopener noreferrer" aria-label="Join debate: ISRO and Indian startups">
+            <img class="tt-debate-img"
+                 src="https://thetalktrend.com/api/v1/topic/files/11/feb3134b-61e1-4fe5-a09c-a74c58343479.jpg"
+                 alt="ISRO rocket launch and India startup ecosystem"
+                 loading="lazy">
+          </a>
+          <div class="tt-debate-body">
+            <div class="tt-debate-tag">Technology · Space</div>
+            <h3 class="tt-debate-title" itemprop="headline">
+              Will India's Startup Boom Make ISRO Stronger or Weaker?
+            </h3>
+            <p class="tt-debate-desc" itemprop="text">
+              India's private space sector is growing rapidly, with startups entering areas once dominated by ISRO — from rockets and satellites to space-based services. Will private companies reduce ISRO's workload and help it scale? Or will they divert talent and funding away from the national space agency?
+            </p>
+            <div class="tt-debate-bars">
+              <div class="tt-bar-support">👍 Stronger</div>
+              <div class="tt-bar-against">👎 Weaker</div>
+            </div>
+            <a href="https://thetalktrend.com/debate/11" class="tt-debate-link" target="_blank" rel="noopener noreferrer" itemprop="url">
+              Join this debate
+            </a>
+          </div>
+        </article>
+
+        <!-- Debate 25 (from screenshot) -->
+        <article class="tt-debate-card" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+          <div class="tt-debate-body" style="padding-top:2rem;">
+            <div class="tt-debate-tag">Reservation · Policy</div>
+            <h3 class="tt-debate-title" itemprop="headline">
+              Reservation Hatao Andolan: Do You Support It or Oppose It?
+            </h3>
+            <p class="tt-debate-desc" itemprop="text">
+              The "Reservation Hatao Andolan" has sparked a nationwide debate around caste-based reservation, merit, equality, and economic justice in India. Should reservation be abolished, reformed, or continued as-is? This is one of the most contested debates on TrendTalk.
+            </p>
+            <div class="tt-debate-bars">
+              <div class="tt-bar-support">👍 Support It</div>
+              <div class="tt-bar-against">👎 Oppose It</div>
+            </div>
+            <a href="https://thetalktrend.com" class="tt-debate-link" target="_blank" rel="noopener noreferrer" itemprop="url">
+              Join this debate
+            </a>
+          </div>
+        </article>
+
+        <!-- Debate: AI Code -->
+        <article class="tt-debate-card" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+          <div class="tt-debate-body" style="padding-top:2rem;">
+            <div class="tt-debate-tag">Technology · AI</div>
+            <h3 class="tt-debate-title" itemprop="headline">
+              Do You Really Trust Code Written By AI?
+            </h3>
+            <p class="tt-debate-desc" itemprop="text">
+              AI coding tools like GitHub Copilot and ChatGPT are writing production code. But should developers trust it? Explore the challenges, benefits, and reliability of AI-generated programming in real-world software projects.
+            </p>
+            <div class="tt-debate-bars">
+              <div class="tt-bar-support">👍 Yes, I trust it</div>
+              <div class="tt-bar-against">👎 No, I don't</div>
+            </div>
+            <a href="https://thetalktrend.com" class="tt-debate-link" target="_blank" rel="noopener noreferrer" itemprop="url">
+              Join this debate
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="tt-debates-cta">
+        <a href="https://thetalktrend.com/explore" target="_blank" rel="noopener noreferrer" class="tt-btn-primary">
+          Browse All Debates →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FEATURES
+       ═══════════════════════════════════════ -->
+  <section class="tt-features" aria-labelledby="features-heading">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="tt-section-label">Platform Features</div>
+      <h2 class="tt-section-title" id="features-heading">Everything a Debate Platform Needs</h2>
+
+      <div class="tt-features-grid">
+        <div class="tt-feat reveal">
+          <div class="tt-feat-icon">👍👎</div>
+          <h3>Support / Against Voting</h3>
+          <p>Binary structured voting keeps every debate focused. Users pick a side and their vote is tallied in real-time, updating the live support percentage instantly.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-1">
+          <div class="tt-feat-icon">🤖</div>
+          <h3>AI Toxicity Moderation</h3>
+          <p>Every comment is evaluated by an AI model before it goes live. Toxicity scores, stance detection, and confidence ratings are logged per comment. Flagged content shows a content warning that users must click to reveal.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-2">
+          <div class="tt-feat-icon">📊</div>
+          <h3>Real-Time Vote Tallies</h3>
+          <p>Live vote counts, percentage splits, and comment counts update as users participate. The circular progress indicator always shows the current Support vs Against ratio.</p>
+        </div>
+        <div class="tt-feat reveal">
+          <div class="tt-feat-icon">🧵</div>
+          <h3>Structured Debate Threads</h3>
+          <p>Support arguments and Against arguments live in separate columns, preventing the cross-talk that makes most comment sections unreadable. Full view and split view layouts available.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-1">
+          <div class="tt-feat-icon">🔍</div>
+          <h3>Explore Feed</h3>
+          <p>Browse all active debates in a card-based grid with thumbnail images, vote counts, and comment splits. Infinite scroll keeps the feed fresh. Share any debate directly from the card.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-2">
+          <div class="tt-feat-icon">🏅</div>
+          <h3>User Credibility Score</h3>
+          <p>Users build reputation through civil, substantive arguments. The admin dashboard surfaces stance accuracy, toxicity scores, and comment activity per user for moderation decisions.</p>
+        </div>
+        <div class="tt-feat reveal">
+          <div class="tt-feat-icon">🌙</div>
+          <h3>Dark Mode Interface</h3>
+          <p>TrendTalk ships with a polished dark UI optimised for night reading — a necessity for debates that run into the early hours.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-1">
+          <div class="tt-feat-icon">📱</div>
+          <h3>Mobile-First Design</h3>
+          <p>Debate feed, voting, and comment posting are all thumb-friendly on mobile. Available as a Progressive Web App and in native Android / iOS builds.</p>
+        </div>
+        <div class="tt-feat reveal reveal-delay-2">
+          <div class="tt-feat-icon">🔗</div>
+          <h3>Share to WhatsApp</h3>
+          <p>Every debate has a share endpoint (<code style="font-size:0.72rem;color:var(--tt-blue);">/api/v1/topic/:id/share</code>) that generates server-rendered Open Graph preview cards — so debates look great when shared on WhatsApp, Twitter, or Telegram.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       INDEXED TOPIC LIST (crawlability)
+       ═══════════════════════════════════════ -->
+  <section class="tt-topics" aria-labelledby="topics-heading">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="tt-section-label">Debate Index</div>
+      <h2 class="tt-section-title" id="topics-heading">Browse Debates by Topic</h2>
+      <p style="font-size:0.85rem;color:var(--tt-muted);max-width:520px;margin-bottom:1rem;">
+        A curated index of active and trending debates on TrendTalk, spanning politics, technology, culture, environment, and more.
+      </p>
+
+      <div class="tt-topics-list">
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">Bittu Tabahi Is Cleaning a Polluted River — But Why Did He Have To?</div>
+          <div class="tt-topic-meta">Environment · Active · <a href="https://thetalktrend.com/debate/35" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">Reservation Hatao Andolan: Do You Support It or Oppose It?</div>
+          <div class="tt-topic-meta">Policy · Active · <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">Will India's Startup Boom Make ISRO Stronger or Weaker?</div>
+          <div class="tt-topic-meta">Technology · Active · <a href="https://thetalktrend.com/debate/11" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">Maha Kali Trailer: Like It or Dislike It?</div>
+          <div class="tt-topic-meta">Entertainment · Active · <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">Do You Really Trust Code Written By AI?</div>
+          <div class="tt-topic-meta">Technology · AI · Active · <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+        <div class="tt-topic-item">
+          <div class="tt-topic-title">No Big Budget. No Big Stars. Just a Story That Touched the Heart — Hanuman</div>
+          <div class="tt-topic-meta">Entertainment · Active · <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" style="color:var(--tt-blue);text-decoration:none;">Join →</a></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="https://thetalktrend.com/explore" target="_blank" rel="noopener noreferrer" class="tt-btn-secondary">View All Debates on TrendTalk →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════ -->
+  <div class="tt-cta">
+    <h2 class="reveal">Want a <span>TrendTalk</span> for Your Community?</h2>
+    <p class="reveal reveal-delay-1">TrendTalk is available for licensing — white-label it for your university, media brand, news platform, or community. We'll deploy a fully branded debate platform in weeks, not months.</p>
+    <div class="tt-cta-btns reveal reveal-delay-2">
+      <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer" class="tt-btn-primary">Try TrendTalk Free →</a>
+      <a href="index.html#contact" class="tt-btn-secondary">Enquire About Licensing</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand"><span>FIRE</span>CHARS</div>
+    <div class="footer-copy">
+      &copy; <span id="yr"></span> FireChars.in &nbsp;·&nbsp;
+      <a href="products.html">All Products</a> &nbsp;·&nbsp;
+      <a href="https://thetalktrend.com" target="_blank" rel="noopener noreferrer">TrendTalk →</a>
+    </div>
+    <div class="footer-tagline">CHARACTERS THAT POWER INNOVATION</div>
+  </footer>
+
+  <!-- WHATSAPP FAB -->
+  <div class="whatsapp-fab">
+    <a href="https://wa.me/919011873168?text=Hi%20FireChars%20team!%20I%20am%20interested%20in%20TrendTalk."
+       target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
