@@ -385,9 +385,17 @@
   #pfos-product .product-info {
     padding: 2rem 2rem 2.5rem !important;
   }
-  #trendtalk-product {
+  #trendtalk-product,
+  #wedding-product {
     grid-column: span 1 !important;
     display: block !important;
+  }
+  #wedding-product .product-screenshot {
+    height: 440px !important;
+  }
+  #wedding-product .product-info {
+    padding: 2rem 2rem 2.5rem !important;
+    background: #1A0D12 !important;
   }
   #trendtalk-product .product-screenshot {
     height: 320px;
